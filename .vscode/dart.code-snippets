@@ -1,0 +1,120 @@
+{
+    "Build a SizedBox with custom height": {
+      "prefix": "sbh",
+      "body": ["const SizedBox(height: ${1:8}),"],
+      "description": "Build a SizedBox with custom height"
+    },
+    "Build a SizedBox with custom width": {
+      "prefix": "sbw",
+      "body": ["const SizedBox(width: ${1:8}),"],
+      "description": "Build a SizedBox with custom width"
+    },
+    "Build a SingleChildScrollView": {
+      "prefix": "scsv",
+      "body": ["SingleChildScrollView(", "\tchild: $1,", ")"],
+      "description": "Build a SingleChildScrollView"
+    },
+    "Generate a ViewModel": {
+      "prefix": "bvm",
+      "body": [
+        "import 'package:flutter/material.dart';",
+        "import 'package:rxdart/rxdart.dart';",
+        "",
+        "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} {",
+        "\tfinal $1Repository repository;",
+        "\tfinal BaseViewModel base;",
+        "\tfinal RequestBase req;",
+        "",
+        "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}({",
+        "\t@required this.repository,",
+        "\t@required this.base,",
+        "\t@required this.req,",
+        "\t});",
+        "",
+        "\tfinal $2Stream = BehaviorSubject<$3>();",
+        "",
+        "\tFuture<void> $4Async(BuildContext context) async {",
+        "\t\tfinal request = repository.$4Async();",
+        "\t\treq.onRequestBase(",
+        "\t\t\tcontext,",
+        "\t\t\trequest,",
+        "\t\t\tstream: $2Stream,",
+        "\t\t\tprogressDialogStream: base.progressDialogStream,",
+        "\t\t\terrorMessageStream: base.errorMessageStream,",
+        "\t\t);",
+        "\t}",
+        "",
+        "\tvoid dispose() {",
+        "\t\tbase.dispose();",
+        "\t\t$2Stream.close();",
+        "\t}",
+        "}"
+      ],
+      "description": "Build ViewModel boilerplate"
+    },
+    "Create a JSONSerializable Class": {
+      "prefix": "jsc",
+      "body": [
+        "import 'package:json_annotation/json_annotation.dart';",
+        "",
+        "part '$TM_FILENAME_BASE.g.dart';",
+        "",
+        "@JsonSerializable()",
+        "class ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}} {",
+        "",
+        "\t${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}();",
+        "",
+        "\tfactory ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}.fromJson(Map<String, dynamic> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}FromJson(json);",
+        "\tMap<String, dynamic> toJson() => _$${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}ToJson(this);",
+        "}",
+        ""
+      ],
+      "description": "Creates a JSONSerializable Model inside a dartlang file. Useful for flutter and dart for web."
+    },
+    "Stateless Widget": {
+      "prefix": "statelessW",
+      "body": [
+        "import 'package:flutter/material.dart';",
+        "",
+        "class ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}} extends StatelessWidget {",
+        "",
+        "\tconst ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}({Key key}) : super(key: key);",
+        "",
+        "\t@override",
+        "\tWidget build(BuildContext context) {",
+        "\t\treturn Container(",
+        "\t\t\tchild: ${2:null},",
+        "\t\t);",
+        "\t}",
+        "}",
+        ""
+      ],
+      "description": "Creates a Stateless widget"
+    },
+    "Statefull Widget": {
+      "prefix": "statefulW",
+      "body": [
+        "import 'package:flutter/material.dart';",
+        "",
+        "class ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}} extends StatefulWidget {",
+        "\tconst ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}({Key key}) : super(key: key);",
+        "",
+        "\t@override",
+        "\t_${1:${TM_FILENAME_BASE/(.)/${1:/pascalcase}/}}State createState() => _${1:${TM_FILENAME_BASE/(.)/${1:/pascalcase}/}}State();",
+        "}",
+        "",
+        "class _${1:${TM_FILENAME_BASE/(.)/${1:/pascalcase}/}}State extends State<${1:${TM_FILENAME_BASE/(.)/${1:/pascalcase}/}}> {",
+        "",
+        "\t@override",
+        "\tWidget build(BuildContext context) {",
+        "\t\treturn Container(",
+        "\t\t\tchild: ${2:null},",
+        "\t\t);",
+        "\t}",
+        "}",
+        ""
+      ],
+      "description": "Creates a Statefull widget"
+    }
+}
+  

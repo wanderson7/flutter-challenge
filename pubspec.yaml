@@ -23,5 +23,10 @@ flutter:
 
   uses-material-design: true
   assets:
+    - assets/
+    - assets/1.5x/
+    - assets/2.0x/
+    - assets/3.0x/
+    - assets/4.0x/
     - lib/config/development/
     - lib/config/production/.env
