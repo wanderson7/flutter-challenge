@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge/app/page/home_page.dart';
+import 'package:flutter_challenge/app/page/home/home_page.dart';
 
 class R {
   static const homePage = '/';

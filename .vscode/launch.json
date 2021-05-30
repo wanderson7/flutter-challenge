@@ -5,7 +5,7 @@
             "name": "Flutter - DEV",
             "request": "launch",
             "type": "dart",
-            "program": "lib/environments/main_development.dart",
+            "program": "lib/config/development/main.dart",
         }
     ]
 }

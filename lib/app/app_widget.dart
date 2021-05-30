@@ -15,25 +15,56 @@ class AppWidget extends StatelessWidget {
           padding: EdgeInsets.all(8),
           minWidth: 12,
         ),
+        inputDecorationTheme: const InputDecorationTheme(
+          labelStyle: TextStyle(color: C.grey),
+          hintStyle: TextStyle(color: Colors.white),
+          errorStyle: TextStyle(color: C.danger),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: C.grey),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: C.white),
+          ),
+          border: UnderlineInputBorder(
+            borderSide: BorderSide(color: C.white),
+          ),
+          errorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: C.danger),
+          ),
+          focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: C.danger),
+          ),
+        ),
         primaryColor: C.primary,
         accentColor: C.accent,
-        brightness: Brightness.light,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: C.accent,
+        ),
+        hintColor: Colors.white,
+        brightness: Brightness.dark,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: const TextTheme(
+           headline4: TextStyle(
+            fontSize: 32,
+            letterSpacing: 0.15,
+            color: C.white,
+            fontWeight: TextHelper.bold,
+          ),
           headline6: TextStyle(
             fontSize: 24,
             letterSpacing: 0.15,
-            fontWeight: TextHelper.bold,
+            color: C.white,
+            fontWeight: TextHelper.regular,
           ),
           bodyText1: TextStyle(
             fontSize: 16,
             fontWeight: TextHelper.regular,
-            color: C.grey_500,
+            color: C.grey,
           ),
           bodyText2: TextStyle(
             fontSize: 14,
             fontWeight: TextHelper.regular,
-            color: C.grey_500,
+            color: C.grey,
           ),
           caption: TextStyle(
             fontSize: 12,
