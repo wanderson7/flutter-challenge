@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_challenge/app/helpers/asset_helper.dart';
 import 'package:flutter_challenge/app/helpers/colors_helper.dart';
 import 'package:flutter_challenge/app/helpers/text_form_helper.dart';
@@ -22,34 +23,40 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      backgroundColor: C.primary,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        backgroundColor: C.primary,
+        body: Form(
           key: _formKey,
           autovalidateMode: _autoValidate,
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: deviceHeight * 0.1),
-                _buildImageLogo(),
-                SizedBox(height: 32),
-                _buildTextDescription(context),
-                _buildTextTitle(context),
-                SizedBox(height: 48),
-                _buildTextFormFieldEmail(),
-                SizedBox(height: 24),
-                _buildTextFormFieldPassword(),
-                SizedBox(height: 16),
-                _buildTextButtonForgetPassword(),
-                SizedBox(height: deviceHeight * 0.1),
-                _buildButtonLogin(),
-                SizedBox(height: 16),
-                _buildTextButtonRegisterUser(),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: deviceHeight * 0.1),
+                  _buildImageLogo(),
+                  SizedBox(height: 32),
+                  _buildTextDescription(context),
+                  _buildTextTitle(context),
+                  SizedBox(height: 32),
+                  _buildTextFormFieldEmail(),
+                  SizedBox(height: 24),
+                  _buildTextFormFieldPassword(),
+                  SizedBox(height: 16),
+                  _buildTextButtonForgetPassword(),
+                  SizedBox(height: deviceHeight * 0.1),
+                  _buildButtonLogin(),
+                  SizedBox(height: 16),
+                  _buildTextButtonRegisterUser(),
+                ],
+              ),
             ),
           ),
         ),
@@ -107,7 +114,7 @@ class _HomePageState extends State<HomePage> {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        style: TextButton.styleFrom(primary: C.grey),
+        style: TextButton.styleFrom(primary: C.white),
         onPressed: () {},
         child: Text("Esqueceu sua senha?"),
       ),
