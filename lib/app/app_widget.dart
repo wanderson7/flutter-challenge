@@ -53,7 +53,7 @@ class AppWidget extends StatelessWidget {
           headline6: TextStyle(
             fontSize: 24,
             letterSpacing: 0.15,
-            color: C.white,
+            color: C.grey,
             fontWeight: TextHelper.regular,
           ),
           bodyText1: TextStyle(

@@ -65,12 +65,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildTextDescription(BuildContext context) {
-    return Text("Continue com o seu",
-        style: Theme.of(context).textTheme.headline6);
+    return Text(
+      "Continue com o seu",
+      style: Theme.of(context).textTheme.headline6,
+    );
   }
 
   Widget _buildTextTitle(BuildContext context) {
-    return Text("Login", style: Theme.of(context).textTheme.headline4);
+    return Text(
+      "Login",
+      style: Theme.of(context).textTheme.headline4,
+    );
   }
 
   Widget _buildTextFormFieldEmail() {
@@ -83,7 +88,8 @@ class _HomePageState extends State<HomePage> {
       enableSuggestions: false,
       textInputAction: TextInputAction.next,
       onSaved: (newValue) => _emailValue = newValue.trim(),
-      onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_focusPassword),
+      onFieldSubmitted: (_) =>
+          FocusScope.of(context).requestFocus(_focusPassword),
       validator: Validator.emailRule,
       style: TextStyle(color: Colors.white),
     );
