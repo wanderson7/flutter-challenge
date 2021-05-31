@@ -18,15 +18,15 @@ class UpdateAllowedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS ? _buildSwitch() : _buildCheckBox();
+    return Platform.isIOS ? _buildSwitch(context) : _buildCheckBox(context);
   }
 
-  Widget _buildSwitch() {
+  Widget _buildSwitch(BuildContext context) {
     return InkWell(
       onTap: () => onChanged(!value),
       child: Row(
         children: <Widget>[
-          Expanded(child: Text(text)),
+          Expanded(child: Text(text, style: Theme.of(context).textTheme.bodyText1)),
           CupertinoSwitch(
             value: value,
             onChanged: onChanged,
@@ -36,7 +36,7 @@ class UpdateAllowedWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildCheckBox() {
+  Widget _buildCheckBox(BuildContext context) {
     return InkWell(
       onTap: () => onChanged(!value),
       child: Row(

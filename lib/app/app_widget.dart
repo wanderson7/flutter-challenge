@@ -59,12 +59,12 @@ class AppWidget extends StatelessWidget {
           bodyText1: TextStyle(
             fontSize: 16,
             fontWeight: TextHelper.regular,
-            color: C.grey,
+            color: C.white,
           ),
           bodyText2: TextStyle(
             fontSize: 14,
             fontWeight: TextHelper.regular,
-            color: C.grey,
+            color: C.white,
           ),
           caption: TextStyle(
             fontSize: 12,
