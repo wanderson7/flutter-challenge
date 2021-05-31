@@ -75,7 +75,7 @@ class AppWidget extends StatelessWidget {
       ),
       onGenerateTitle: (BuildContext context) => "Flutter Challenge",
       onGenerateRoute: (route) => R.generateRoute(route),
-      initialRoute: R.signInPage,
+      initialRoute: R.homePage,
     );
   }
 }

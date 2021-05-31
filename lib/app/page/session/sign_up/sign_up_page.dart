@@ -42,50 +42,19 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(height: deviceHeight * 0.1),
                 _buildLogoAndTitle(),
                 SizedBox(height: 16),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Nome Completo"),
-                  keyboardType: TextInputType.name,
-                  textInputAction: TextInputAction.next,
-                  onSaved: (newValue) => _fullNameValue = newValue.trim(),
-                  validator: (value) => Validator.fieldIsEmpty(value),
-                ),
+                _buildTextFormFieldFullName(),
                 SizedBox(height: 16),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "E-mail"),
-                  autocorrect: false,
-                  keyboardType: TextInputType.emailAddress,
-                  textInputAction: TextInputAction.next,
-                  validator: Validator.emailRule,
-                  onSaved: (newValue) => _emailValue = newValue.trim(),
-                ),
+                _buildTextFormFieldEmail(),
                 SizedBox(height: 16),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "CPF"),
-                  inputFormatters: [TextInputMask(mask: cpfPattern)],
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.next,
-                  validator: (value) => Validator.cpfRule(value),
-                  onSaved: (newValue) => _cpfValue = newValue.trim(),
-                ),
+                _buildTextFormFieldCPF(),
                 SizedBox(height: 16),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Celular"),
-                  inputFormatters: [TextInputMask(mask: cellPhonePattern)],
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.next,
-                  validator: (value) => Validator.phoneRule(value),
-                  onSaved: (newValue) => _phoneValue = newValue.trim(),
-                ),
+                _buildTextFormFieldPhone(),
                 SizedBox(height: 16),
                 _buildTextFormFieldPassword(),
                 SizedBox(height: 16),
                 _buildTextFormConfirmPassword(),
                 SizedBox(height: 16),
-                UpdateAllowedWidget(
-                  text: "Receber atualizações por e-mail",
-                  value: _emailUpdatesAllowed,
-                  onChanged: _onCheckBoxChanged,
-                ),
+                _buildUpdateAllowed(),
                 SizedBox(height: deviceHeight * 0.1),
                 _buildButtonRegister(),
                 SizedBox(height: 16),
@@ -114,6 +83,49 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
+  Widget _buildTextFormFieldFullName() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: "Nome Completo"),
+      keyboardType: TextInputType.name,
+      textInputAction: TextInputAction.next,
+      onSaved: (newValue) => _fullNameValue = newValue.trim(),
+      validator: (value) => Validator.fieldIsEmpty(value),
+    );
+  }
+
+  Widget _buildTextFormFieldEmail() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: "E-mail"),
+      autocorrect: false,
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
+      validator: Validator.emailRule,
+      onSaved: (newValue) => _emailValue = newValue.trim(),
+    );
+  }
+
+  Widget _buildTextFormFieldCPF() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: "CPF"),
+      inputFormatters: [TextInputMask(mask: cpfPattern)],
+      keyboardType: TextInputType.number,
+      textInputAction: TextInputAction.next,
+      validator: (value) => Validator.cpfRule(value),
+      onSaved: (newValue) => _cpfValue = newValue.trim(),
+    );
+  }
+
+  Widget _buildTextFormFieldPhone() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: "Celular"),
+      inputFormatters: [TextInputMask(mask: cellPhonePattern)],
+      keyboardType: TextInputType.number,
+      textInputAction: TextInputAction.next,
+      validator: (value) => Validator.phoneRule(value),
+      onSaved: (newValue) => _phoneValue = newValue.trim(),
+    );
+  }
+
   Widget _buildTextFormFieldPassword() {
     return PasswordTextFormField(
       text: "Senha",
@@ -132,6 +144,14 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
+  Widget _buildUpdateAllowed() {
+    return UpdateAllowedWidget(
+      text: "Receber atualizações por e-mail",
+      value: _emailUpdatesAllowed,
+      onChanged: _onCheckBoxChanged,
+    );
+  }
+
   Widget _buildButtonRegister() {
     return CustomButton(
       text: "Registrar",
@@ -145,7 +165,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Center(
       child: TextButton(
         style: TextButton.styleFrom(primary: C.grey),
-        onPressed: () => showSignUpPage(),
+        onPressed: () => Navigator.of(context).pop(),
         child: RichText(
           text: TextSpan(
             text: 'Já possui uma conta? ',
@@ -168,10 +188,6 @@ class _SignUpPageState extends State<SignUpPage> {
     setState(() {
       _emailUpdatesAllowed = newValue;
     });
-  }
-
-  void showSignUpPage() {
-    Navigator.of(context).pop();
   }
 
   void _validateForm() {
