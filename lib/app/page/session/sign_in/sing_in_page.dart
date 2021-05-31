@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_challenge/app/helpers/asset_helper.dart';
 import 'package:flutter_challenge/app/helpers/colors_helper.dart';
-import 'package:flutter_challenge/app/helpers/text_form_helper.dart';
+import 'package:flutter_challenge/app/helpers/router_helper.dart';
 import 'package:flutter_challenge/app/helpers/validator_helper.dart';
 import 'package:flutter_challenge/app/shared/components/button/custom_button.dart';
 import 'package:flutter_challenge/app/shared/components/textForm/password_text_form.dart';
 
-class HomePage extends StatefulWidget {
+class SignInPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _SignInPageState createState() => _SignInPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
   var _autoValidate = AutovalidateMode.disabled;
-  final _focusPassword = FocusNode();
   String _emailValue;
   String _passwordValue;
   bool _visible = false;
@@ -29,7 +28,6 @@ class _HomePageState extends State<HomePage> {
         statusBarBrightness: Brightness.dark,
       ),
       child: Scaffold(
-        backgroundColor: C.primary,
         body: Form(
           key: _formKey,
           autovalidateMode: _autoValidate,
@@ -47,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                   _buildTextTitle(context),
                   SizedBox(height: 32),
                   _buildTextFormFieldEmail(),
-                  SizedBox(height: 24),
+                  SizedBox(height: 16),
                   _buildTextFormFieldPassword(),
                   SizedBox(height: 16),
                   _buildTextButtonForgetPassword(),
@@ -87,25 +85,19 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildTextFormFieldEmail() {
     return TextFormField(
-      decoration: TextFormHelper.getDefaultInputDecoration(
-        "E-mail",
-      ),
-      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(labelText: "E-mail"),
       autocorrect: false,
-      enableSuggestions: false,
+      keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
-      onSaved: (newValue) => _emailValue = newValue.trim(),
-      onFieldSubmitted: (_) =>
-          FocusScope.of(context).requestFocus(_focusPassword),
       validator: Validator.emailRule,
-      style: TextStyle(color: Colors.white),
+      onSaved: (newValue) => _emailValue = newValue.trim(),
     );
   }
 
   Widget _buildTextFormFieldPassword() {
     return PasswordTextFormField(
       text: "Senha",
-      focusNode: _focusPassword,
+      validator: (text) => Validator.passwordRule(text),
       onSaved: (text) => _passwordValue = text,
     );
   }
@@ -134,7 +126,7 @@ class _HomePageState extends State<HomePage> {
     return Center(
       child: TextButton(
         style: TextButton.styleFrom(primary: C.grey),
-        onPressed: () {},
+        onPressed: () => showSignUpPage(),
         child: RichText(
           text: TextSpan(
             text: 'Não tem uma conta? ',
@@ -150,6 +142,12 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+    );
+  }
+
+  void showSignUpPage() {
+    Navigator.of(context).pushNamed(
+      R.signUpPage,
     );
   }
 

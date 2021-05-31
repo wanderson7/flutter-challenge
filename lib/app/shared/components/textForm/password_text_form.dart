@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/app/helpers/colors_helper.dart';
-import 'package:flutter_challenge/app/helpers/validator_helper.dart';
 
 class PasswordTextFormField extends StatefulWidget {
   final String text;
   final TextEditingController controller;
   final FormFieldSetter<String> onSaved;
+  final ValueChanged<String> onChanged;
   final ValueChanged<String> onFieldSubmitted;
+  final String Function(String) validator;
   final TextInputAction textInputAction;
   final FocusNode focusNode;
 
@@ -14,8 +15,10 @@ class PasswordTextFormField extends StatefulWidget {
     Key key,
     this.text,
     this.onSaved,
+    this.onChanged,
     this.onFieldSubmitted,
     this.textInputAction = TextInputAction.done,
+    this.validator,
     this.focusNode,
     this.controller,
   }) : super(key: key);
@@ -37,8 +40,9 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
       keyboardType: TextInputType.visiblePassword,
       textInputAction: widget.textInputAction,
       onFieldSubmitted: widget.onFieldSubmitted,
-      validator: (text) => Validator.passwordRule(text),
+      validator: widget.validator,
       onSaved: widget.onSaved,
+      onChanged: widget.onChanged,
     );
   }
 

@@ -6,6 +6,8 @@ K get buildEnv => _env;
 K _env;
 
 class K {
+  static const phoneNumberLength = 14;
+  
   K._init({this.environment});
 
   final String environment;

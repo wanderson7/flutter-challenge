@@ -1,20 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge/app/page/home/home_page.dart';
+import 'package:flutter_challenge/app/page/session/sign_in/sing_in_page.dart';
+import 'package:flutter_challenge/app/page/session/sign_up/sign_up_page.dart';
 
 class R {
-  static const homePage = '/';
-  static const userDetailsPage = '/user-details-page';
+  static const signInPage = '/';
+  static const signUpPage = '/sign-up-page';
+  static const mainPage = '/';
 
   static Route<dynamic> generateRoute(
     RouteSettings settings, {
     bool isUserLogged,
   }) {
     switch (settings.name) {
-      case homePage:
+      case signInPage:
         return CupertinoPageRoute(
-          settings: const RouteSettings(name: homePage),
-          builder: (_) => HomePage(),
+          settings: const RouteSettings(name: signInPage),
+          builder: (_) => SignInPage(),
+        );
+      case signUpPage:
+        return CupertinoPageRoute(
+          settings: const RouteSettings(name: signUpPage),
+          builder: (_) => SignUpPage(),
         );
       default:
         return _getNoRouteDefined(settings);

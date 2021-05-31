@@ -9,7 +9,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: C.white,
+        scaffoldBackgroundColor: C.primary,
         buttonTheme: const ButtonThemeData(
           alignedDropdown: true,
           padding: EdgeInsets.all(8),
@@ -75,7 +75,7 @@ class AppWidget extends StatelessWidget {
       ),
       onGenerateTitle: (BuildContext context) => "Flutter Challenge",
       onGenerateRoute: (route) => R.generateRoute(route),
-      initialRoute: R.homePage,
+      initialRoute: R.signInPage,
     );
   }
 }

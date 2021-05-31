@@ -1,3 +1,5 @@
+import 'constants.dart';
+import 'formatter_helper.dart';
 
 class Validator {
   static String fieldIsEmpty(String value) {
@@ -7,7 +9,7 @@ class Validator {
   }
 
   static String emailRule(String value) {
-    if (value.isEmpty) return "Informe o e-mail";
+    if (value.isEmpty) return 'Campo obrigatório';
 
     const Pattern pattern =
         r'^[a-zA-Z0-9.!\#$%&"*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$';
@@ -18,9 +20,9 @@ class Validator {
     return null;
   }
 
-  static String passwordRule( String value) {
+  static String passwordRule(String value) {
     if (value.isEmpty) {
-      return "Informe a senha";
+      return "Campo obrigatório";
     }
 
     if (value.length < 8) {
@@ -34,6 +36,38 @@ class Validator {
       return "Mínimo 8 caracteres, letras e números.";
     }
 
+    return null;
+  }
+
+  static String confirmPasswordRule(String password, String confirmPassword) {
+    if (confirmPassword.isEmpty) {
+      return "Campo obrigatório";
+    }
+
+    if (password != null) {
+      if (confirmPassword.isEmpty) return "Campo obrigatório";
+
+      return confirmPassword != password
+          ? "Senha e confirmação de senha não coincidem."
+          : null;
+    }
+
+    return null;
+  }
+
+  static String cpfRule(String value, {int cpfLength = 14}) {
+    if (value.isEmpty) return "Campo obrigatório";
+    if (value.length != cpfLength || !value.isValidCpf)
+      return "Por favor, informe um CPF válido.";
+    return null;
+  }
+
+  static String phoneRule(String value) {
+    if (value.isEmpty) return "Campo obrigatório";
+    if (value.length < K.phoneNumberLength ||
+        value.length > K.phoneNumberLength + 1) {
+      return "Informe um celular válido.";
+    }
     return null;
   }
 }
