@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge/app/dio/logger_container.dart';
+import 'package:flutter_challenge/app/shared/logger/logger_container.dart';
 import 'package:flutter_challenge/app/helpers/constants.dart';
 
 import '../app/app_widget.dart';
