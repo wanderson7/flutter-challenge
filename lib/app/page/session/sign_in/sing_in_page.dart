@@ -15,8 +15,8 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
   var _autoValidate = AutovalidateMode.disabled;
-  String _emailValue;
-  String _passwordValue;
+  String? _emailValue;
+  String? _passwordValue;
   bool _visible = false;
 
   @override
@@ -90,7 +90,7 @@ class _SignInPageState extends State<SignInPage> {
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       validator: Validator.emailRule,
-      onSaved: (newValue) => _emailValue = newValue.trim(),
+      onSaved: (newValue) => _emailValue = newValue!.trim(),
     );
   }
 
@@ -152,8 +152,8 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void _validateForm() {
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
     } else {
       setState(() => _autoValidate = AutovalidateMode.always);
     }

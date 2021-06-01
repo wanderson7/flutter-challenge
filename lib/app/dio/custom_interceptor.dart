@@ -40,8 +40,8 @@ class CustomInterceptor extends InterceptorsWrapper {
   }
 
   void _onDioRequestHeader(RequestOptions options) {
-    final uri = options?.uri;
-    final method = options?.method;
+    final uri = options.uri;
+    final method = options.method;
     logger.d('$logRequestTitle ║ $method\n$uri');
 
     if (options.method != optionMethod) {
@@ -70,19 +70,19 @@ class CustomInterceptor extends InterceptorsWrapper {
 
   void _onDioError(DioError err) {
     if (err.type == DioErrorType.response) {
-      final uri = err.response.realUri;
+      final uri = err.response?.realUri;
       logger.e(
-          '$logDieErrorTitle ║ $logStatusTitle: ${err.response.statusCode} ${err.response.statusMessage}\n$uri');
-      if (err.response != null && err.response.data != null) {
-        logger.e('${err.type}\n${err.response.data}');
+          '$logDieErrorTitle ║ $logStatusTitle: ${err.response?.statusCode} ${err.response?.statusMessage}\n$uri');
+      if (err.response != null && err.response?.data != null) {
+        logger.e('${err.type}\n${err.response?.data}');
       }
     } else {
       logger.e('$logDieErrorTitle ║ ${err.type}\n${err.message}');
     }
   }
 
-  void _printMapAsTable(Map map, {String header}) {
-    if (map == null || map.isEmpty) return;
+  void _printMapAsTable(Map map, {String? header}) {
+    if (map.isEmpty) return;
     String text = '';
     map.forEach((key, value) => text += '{$key: $value}\n');
     logger.d('$header\n$text');

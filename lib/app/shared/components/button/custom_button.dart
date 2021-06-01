@@ -17,13 +17,13 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final CustomButtonVariant variant;
   final double height;
-  final IconData iconPath;
+  final IconData? iconPath;
   final bool enable;
 
   const CustomButton({
-    Key key,
-    @required this.text,
-    @required this.onPressed,
+    Key? key,
+    required this.text,
+    required this.onPressed,
     this.enable = true,
     this.margin = const EdgeInsets.all(0),
     this.fontSize = 16,
@@ -54,7 +54,7 @@ class CustomButton extends StatelessWidget {
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: _getBorderRadius(),
-            side: BorderSide(color: _getColor()),
+            side: BorderSide(color: _getColor()!),
             primary: Colors.transparent,
             textStyle: _getTextSyle(context),
           ),
@@ -74,16 +74,16 @@ class CustomButton extends StatelessWidget {
     }
   }
 
-  Color _getColor() {
+  Color? _getColor() {
     return enable ? color : Colors.grey[200];
   }
 
-  VoidCallback _getOnPressed() {
+  VoidCallback? _getOnPressed() {
     return enable ? onPressed : null;
   }
 
   TextStyle _getTextSyle(BuildContext context) {
-    return Theme.of(context).textTheme.bodyText2.copyWith(
+    return Theme.of(context).textTheme.bodyText2!.copyWith(
           fontWeight: TextHelper.bold,
           color: textColor,
           fontSize: fontSize,
@@ -92,7 +92,7 @@ class CustomButton extends StatelessWidget {
 
   RoundedRectangleBorder _getBorderRadius() {
     return RoundedRectangleBorder(
-      side: BorderSide(color: _getColor()),
+      side: BorderSide(color: _getColor()!),
       borderRadius: BorderRadius.circular(16.0),
     );
   }

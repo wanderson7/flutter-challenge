@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_challenge/app/helpers/asset_helper.dart';
 import 'package:flutter_challenge/app/helpers/colors_helper.dart';
 import 'package:flutter_challenge/app/helpers/formatter_helper.dart';
-import 'package:flutter_challenge/app/helpers/router_helper.dart';
 import 'package:flutter_challenge/app/helpers/text_input_mask.dart';
 import 'package:flutter_challenge/app/helpers/validator_helper.dart';
 import 'package:flutter_challenge/app/shared/components/button/custom_button.dart';
@@ -17,12 +16,12 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   var _autoValidate = AutovalidateMode.disabled;
-  String _fullNameValue;
-  String _emailValue;
-  String _cpfValue;
-  String _phoneValue;
-  String _passwordValue;
-  String _cofirmPasswordValue;
+  String? _fullNameValue;
+  String? _emailValue;
+  String? _cpfValue;
+  String? _phoneValue;
+  String? _passwordValue;
+  String? _cofirmPasswordValue;
   bool _emailUpdatesAllowed = false;
 
   @override
@@ -88,8 +87,8 @@ class _SignUpPageState extends State<SignUpPage> {
       decoration: InputDecoration(labelText: "Nome Completo"),
       keyboardType: TextInputType.name,
       textInputAction: TextInputAction.next,
-      onSaved: (newValue) => _fullNameValue = newValue.trim(),
-      validator: (value) => Validator.fieldIsEmpty(value),
+      onSaved: (newValue) => _fullNameValue = newValue!.trim(),
+      validator: (value) => Validator.fieldIsEmpty(value!),
     );
   }
 
@@ -100,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       validator: Validator.emailRule,
-      onSaved: (newValue) => _emailValue = newValue.trim(),
+      onSaved: (newValue) => _emailValue = newValue!.trim(),
     );
   }
 
@@ -110,8 +109,8 @@ class _SignUpPageState extends State<SignUpPage> {
       inputFormatters: [TextInputMask(mask: cpfPattern)],
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
-      validator: (value) => Validator.cpfRule(value),
-      onSaved: (newValue) => _cpfValue = newValue.trim(),
+      validator: (value) => Validator.cpfRule(value!),
+      onSaved: (newValue) => _cpfValue = newValue!.trim(),
     );
   }
 
@@ -121,8 +120,8 @@ class _SignUpPageState extends State<SignUpPage> {
       inputFormatters: [TextInputMask(mask: cellPhonePattern)],
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
-      validator: (value) => Validator.phoneRule(value),
-      onSaved: (newValue) => _phoneValue = newValue.trim(),
+      validator: (value) => Validator.phoneRule(value!),
+      onSaved: (newValue) => _phoneValue = newValue!.trim(),
     );
   }
 
@@ -184,15 +183,15 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  void _onCheckBoxChanged(bool newValue) {
+  void _onCheckBoxChanged(bool? newValue) {
     setState(() {
-      _emailUpdatesAllowed = newValue;
+      _emailUpdatesAllowed = newValue ?? false;
     });
   }
 
   void _validateForm() {
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
     } else {
       setState(() => _autoValidate = AutovalidateMode.always);
     }

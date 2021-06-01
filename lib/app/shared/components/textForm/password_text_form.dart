@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_challenge/app/helpers/colors_helper.dart';
 
 class PasswordTextFormField extends StatefulWidget {
-  final String text;
-  final TextEditingController controller;
-  final FormFieldSetter<String> onSaved;
-  final ValueChanged<String> onChanged;
-  final ValueChanged<String> onFieldSubmitted;
-  final String Function(String) validator;
+  final String? text;
+  final TextEditingController? controller;
+  final FormFieldSetter<String>? onSaved;
+  final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onFieldSubmitted;
+  final String? Function(String?)? validator;
   final TextInputAction textInputAction;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   const PasswordTextFormField({
-    Key key,
+    Key? key,
     this.text,
     this.onSaved,
     this.onChanged,

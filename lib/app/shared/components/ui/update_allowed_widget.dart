@@ -7,13 +7,13 @@ import 'package:flutter_challenge/app/helpers/colors_helper.dart';
 class UpdateAllowedWidget extends StatelessWidget {
   final String text;
   final bool value;
-  final ValueChanged<bool> onChanged;
+  final void Function(bool?) onChanged;
 
   const UpdateAllowedWidget({
-    Key key,
-    @required this.text,
-    @required this.value,
-    @required this.onChanged,
+    Key? key,
+    required this.text,
+    required this.value,
+    required this.onChanged,
   }) : super(key: key);
 
   @override

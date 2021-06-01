@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge/app/page/main/main_page.dart';
 import 'package:flutter_challenge/app/page/session/sign_in/sing_in_page.dart';
 import 'package:flutter_challenge/app/page/session/sign_up/sign_up_page.dart';
 
@@ -10,7 +9,7 @@ class R {
 
   static Route<dynamic> generateRoute(
     RouteSettings settings, {
-    bool isUserLogged,
+    bool? isUserLogged,
   }) {
     switch (settings.name) {
       case homePage:
@@ -25,7 +24,6 @@ class R {
         );
       default:
         return _getNoRouteDefined(settings);
-        break;
     }
   }
 

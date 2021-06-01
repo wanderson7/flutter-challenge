@@ -6,10 +6,10 @@ class CustomDio extends DioForNative {
 
   Future<CustomDio> init() async {
     final dio = CustomDio();
-    final url = env['API_URL'];
+    final url = dotenv.env['API_URL'];
 
     dio
-      ..options.baseUrl = url
+      ..options.baseUrl = url!
       ..options.connectTimeout = 60000
       ..options.receiveTimeout = 60000
       ..options.sendTimeout = 60000;

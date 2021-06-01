@@ -1,4 +1,3 @@
-
 import 'text_input_mask.dart';
 
 const String cpfPattern = '999.999.999-99';
@@ -9,15 +8,12 @@ MagicMask phoneMask = MagicMask.buildMask(cellPhonePattern);
 
 extension StringExtensions on String {
   String get extractNumbers {
-    if (this != null) return replaceAll(RegExp(r'[^0-9]'), '');
-    return this;
+    return replaceAll(RegExp(r'[^0-9]'), '');
   }
 
   bool get isValidCpf => _isValidCpf(this);
 
   static bool _isValidCpf(String cpf) {
-    if (cpf == null) return false;
-
     final numbers = cpf.extractNumbers;
 
     if (numbers.length != 11) return false;
