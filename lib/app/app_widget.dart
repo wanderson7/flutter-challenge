@@ -40,11 +40,14 @@ class AppWidget extends StatelessWidget {
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: C.accent,
         ),
+        primaryColorLight: Colors.white,
+        primaryColorDark: Colors.white,
         hintColor: Colors.white,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: const TextTheme(
-           headline4: TextStyle(
+          subtitle1: TextStyle(color: Colors.white),
+          headline4: TextStyle(
             fontSize: 32,
             letterSpacing: 0.15,
             color: C.white,

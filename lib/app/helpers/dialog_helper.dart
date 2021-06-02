@@ -36,7 +36,7 @@ class D {
       } else {
         actionButtonOne = TextButton(
           onPressed: onPressedCancel,
-          style: TextButton.styleFrom(primary: C.grey),
+          style: TextButton.styleFrom(primary: C.white),
           child: Text(cancelButton),
         );
       }
@@ -55,7 +55,7 @@ class D {
       } else {
         actionButtonTwo = TextButton(
           onPressed: onPressedConfirm,
-          style: TextButton.styleFrom(primary: C.primary),
+          style: TextButton.styleFrom(primary: C.accent),
           child: Text(confirmButton),
         );
       }
@@ -69,7 +69,9 @@ class D {
       alert = CupertinoAlertDialog(
         title: Padding(
           padding: const EdgeInsets.only(bottom: 8),
-          child: Text(title ?? "Atenção"),
+          child: Text(
+            title ?? "Atenção",
+          ),
         ),
         content: _getMessage(message),
         actions: actions,
@@ -81,7 +83,11 @@ class D {
           left: 24,
           right: 24,
         ),
-        title: Text(title ?? "Atenção"),
+        title: Text(
+          title ?? "Atenção",
+          style:
+              Theme.of(context).textTheme.headline6?.copyWith(color: Colors.black87),
+        ),
         content: _getMessage(message),
         actions: actions,
       );
@@ -106,10 +112,11 @@ class D {
     );
   }
 
-    Widget _getMessage(String? message) {
+  Widget _getMessage(String? message) {
     return Text(
       message ?? "Erro de conexão com a internet",
-      style: Theme.of(context).textTheme.bodyText1,
+       style:
+              Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.grey[700]),
     );
   }
 }

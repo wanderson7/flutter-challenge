@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge/app/helpers/colors_helper.dart';
 
 class CustomProgressIndicator extends StatelessWidget {
   const CustomProgressIndicator({
@@ -25,13 +26,10 @@ class CustomProgressIndicator extends StatelessWidget {
 
   Widget _getProgressIndicator(BuildContext context) {
     if (Platform.isIOS) {
-      return CupertinoTheme(
-        data: CupertinoTheme.of(context).copyWith(brightness: Brightness.light),
-        child: const CupertinoActivityIndicator(
-          radius: 18,
-        ),
+      return const CupertinoActivityIndicator(
+        radius: 18,
       );
     }
-    return const CircularProgressIndicator();
+    return const CircularProgressIndicator(color: C.accent,);
   }
 }
