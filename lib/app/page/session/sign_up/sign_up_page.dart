@@ -9,6 +9,7 @@ import 'package:flutter_challenge/app/shared/components/button/custom_button.dar
 import 'package:flutter_challenge/app/shared/components/progress/dialog/progress_dialog.dart';
 import 'package:flutter_challenge/app/shared/components/textForm/password_text_form.dart';
 import 'package:flutter_challenge/app/shared/components/ui/sign_up/update_allowed_widget.dart';
+import 'package:flutter_challenge/generated/l10n.dart';
 import 'package:stacked/stacked.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -83,7 +84,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         SizedBox(width: 16),
         Text(
-          "Registro",
+          S.current.register,
           style: Theme.of(context).textTheme.headline4,
         )
       ],
@@ -92,7 +93,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildTextFormFieldFullName() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "Nome Completo"),
+      decoration: InputDecoration(labelText: S.current.fullName),
       keyboardType: TextInputType.name,
       textCapitalization: TextCapitalization.words,
       textInputAction: TextInputAction.next,
@@ -103,7 +104,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildTextFormFieldEmail() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "E-mail"),
+      decoration: InputDecoration(labelText: S.current.email),
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
@@ -114,7 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildTextFormFieldCPF() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "CPF"),
+      decoration: InputDecoration(labelText: S.current.cpf),
       inputFormatters: [TextInputMask(mask: cpfPattern)],
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
@@ -125,7 +126,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildTextFormFieldPhone() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "Celular"),
+      decoration: InputDecoration(labelText: S.current.phone),
       inputFormatters: [TextInputMask(mask: cellPhonePattern)],
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
@@ -136,7 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildTextFormFieldPassword() {
     return PasswordTextFormField(
-      text: "Senha",
+      text: S.current.password,
       textInputAction: TextInputAction.next,
       validator: (text) => Validator.passwordRule(text),
       onChanged: (newValue) => _viewModel.userForm.password = newValue,
@@ -145,7 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildTextFormConfirmPassword() {
     return PasswordTextFormField(
-      text: "Confirmação de Senha",
+      text: S.current.passwordConfirmation,
       textInputAction: TextInputAction.done,
       validator: (text) =>
           Validator.confirmPasswordRule(_viewModel.userForm.password, text),
@@ -154,7 +155,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildUpdateAllowed() {
     return UpdateAllowedWidget(
-      text: "Receber atualizações por e-mail",
+      text: S.current.receiveEmailUpdates,
       value: _viewModel.userForm.emailUpdatesAllowed,
       onChanged: _viewModel.onCheckBoxChanged,
     );
@@ -162,7 +163,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildButtonRegister() {
     return CustomButton(
-      text: "Registrar",
+      text: S.current.signUp,
       onPressed: () {
         _viewModel.validateForm();
       },
@@ -176,10 +177,10 @@ class _SignUpPageState extends State<SignUpPage> {
         onPressed: () => Navigator.of(context).pop(),
         child: RichText(
           text: TextSpan(
-            text: 'Já possui uma conta? ',
-            children: const <TextSpan>[
+            text: S.current.doYouAlreadyHaveAnAccount,
+            children: <TextSpan>[
               TextSpan(
-                text: "LOGIN",
+                text: S.current.login.toUpperCase(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: C.accent,

@@ -24,13 +24,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle": MessageLookupByLibrary.simpleMessage("Flutter Challenge"),
         "continueWithYour":
             MessageLookupByLibrary.simpleMessage("Continue com o seu"),
+        "cpf": MessageLookupByLibrary.simpleMessage("CPF"),
         "doNotYouHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Não tem uma conta? "),
+        "doYouAlreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Já possui uma conta? "),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "forgotYourPassword":
             MessageLookupByLibrary.simpleMessage("Esqueceu sua senha?"),
+        "fullName": MessageLookupByLibrary.simpleMessage("Nome Completo"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "password": MessageLookupByLibrary.simpleMessage("Senha"),
-        "register": MessageLookupByLibrary.simpleMessage("Registre-se")
+        "passwordConfirmation":
+            MessageLookupByLibrary.simpleMessage("Confirmação de Senha"),
+        "phone": MessageLookupByLibrary.simpleMessage("Celular"),
+        "receiveEmailUpdates": MessageLookupByLibrary.simpleMessage(
+            "Receber atualizações por e-mail"),
+        "register": MessageLookupByLibrary.simpleMessage("Registro"),
+        "registerYourself": MessageLookupByLibrary.simpleMessage("Registre-se"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Registrar")
       };
 }

@@ -100,6 +100,16 @@ class S {
     );
   }
 
+  /// `Confirmação de Senha`
+  String get passwordConfirmation {
+    return Intl.message(
+      'Confirmação de Senha',
+      name: 'passwordConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Não tem uma conta? `
   String get doNotYouHaveAnAccount {
     return Intl.message(
@@ -111,10 +121,30 @@ class S {
   }
 
   /// `Registre-se`
-  String get register {
+  String get registerYourself {
     return Intl.message(
       'Registre-se',
+      name: 'registerYourself',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registro`
+  String get register {
+    return Intl.message(
+      'Registro',
       name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registrar`
+  String get signUp {
+    return Intl.message(
+      'Registrar',
+      name: 'signUp',
       desc: '',
       args: [],
     );
@@ -125,6 +155,56 @@ class S {
     return Intl.message(
       'Esqueceu sua senha?',
       name: 'forgotYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nome Completo`
+  String get fullName {
+    return Intl.message(
+      'Nome Completo',
+      name: 'fullName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CPF`
+  String get cpf {
+    return Intl.message(
+      'CPF',
+      name: 'cpf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Celular`
+  String get phone {
+    return Intl.message(
+      'Celular',
+      name: 'phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receber atualizações por e-mail`
+  String get receiveEmailUpdates {
+    return Intl.message(
+      'Receber atualizações por e-mail',
+      name: 'receiveEmailUpdates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Já possui uma conta? `
+  String get doYouAlreadyHaveAnAccount {
+    return Intl.message(
+      'Já possui uma conta? ',
+      name: 'doYouAlreadyHaveAnAccount',
       desc: '',
       args: [],
     );

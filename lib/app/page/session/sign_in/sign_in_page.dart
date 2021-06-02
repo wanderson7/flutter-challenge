@@ -145,7 +145,7 @@ class _SignInPageState extends State<SignInPage> {
             text: S.current.doNotYouHaveAnAccount,
             children: <TextSpan>[
               TextSpan(
-                text: S.current.register.toUpperCase(),
+                text: S.current.registerYourself.toUpperCase(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: C.accent,

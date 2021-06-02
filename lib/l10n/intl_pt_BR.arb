@@ -4,7 +4,15 @@
   "login": "Login",
   "email": "E-mail",
   "password": "Senha",
+  "passwordConfirmation": "Confirmação de Senha",
   "doNotYouHaveAnAccount": "Não tem uma conta? ",
-  "register": "Registre-se",
-  "forgotYourPassword": "Esqueceu sua senha?"
+  "registerYourself": "Registre-se",
+  "register": "Registro",
+  "signUp" : "Registrar",
+  "forgotYourPassword": "Esqueceu sua senha?",
+  "fullName": "Nome Completo",
+  "cpf" : "CPF",
+  "phone": "Celular",
+  "receiveEmailUpdates": "Receber atualizações por e-mail",
+  "doYouAlreadyHaveAnAccount": "Já possui uma conta? "
 }
