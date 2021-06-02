@@ -14,5 +14,9 @@
   "cpf" : "CPF",
   "phone": "Celular",
   "receiveEmailUpdates": "Receber atualizações por e-mail",
-  "doYouAlreadyHaveAnAccount": "Já possui uma conta? "
+  "doYouAlreadyHaveAnAccount": "Já possui uma conta? ",
+  "hello": "Olá,",
+  "sessionSuccessDescription" : "Você foi logado com sucesso!",
+  "user": "Usuário",
+  "logout" : "Logout"
 }

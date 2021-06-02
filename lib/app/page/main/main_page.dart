@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_challenge/app/helpers/colors_helper.dart';
 import 'package:flutter_challenge/app/shared/change_notifier/user_changer.dart';
 import 'package:flutter_challenge/app/shared/user_preferences/shared_preferences_helper.dart';
+import 'package:flutter_challenge/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
@@ -16,7 +17,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     userChanger = Provider.of<UserChanger>(context);
-
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
@@ -51,20 +51,20 @@ class _MainPageState extends State<MainPage> {
       child: TextButton(
         style: TextButton.styleFrom(primary: C.accent),
         onPressed: () => UserSharedPreferences.logout(context),
-        child: Text("Logout"),
+        child: Text(S.current.logout),
       ),
     );
   }
 
   Widget _buildTextHello(BuildContext context) {
     return Text(
-      "Olá,",
+      S.current.hello,
       style: Theme.of(context).textTheme.headline6,
     );
   }
 
   Widget _buildTextUsername(BuildContext context) {
-    final userName = userChanger.user?.name ?? "Usuário";
+    final userName = userChanger.user?.name ?? S.current.user;
     return Text(
       userName,
       style: Theme.of(context).textTheme.headline4,
@@ -73,7 +73,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildTextSignInDescription(BuildContext context) {
     return Text(
-      "Você foi logado com sucesso!",
+      S.current.sessionSuccessDescription,
       textAlign: TextAlign.center,
       style: Theme.of(context).textTheme.headline6,
     );

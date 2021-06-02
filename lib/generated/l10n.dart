@@ -209,6 +209,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Olá,`
+  String get hello {
+    return Intl.message(
+      'Olá,',
+      name: 'hello',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Você foi logado com sucesso!`
+  String get sessionSuccessDescription {
+    return Intl.message(
+      'Você foi logado com sucesso!',
+      name: 'sessionSuccessDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Usuário`
+  String get user {
+    return Intl.message(
+      'Usuário',
+      name: 'user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

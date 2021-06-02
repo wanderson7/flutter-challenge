@@ -33,7 +33,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotYourPassword":
             MessageLookupByLibrary.simpleMessage("Esqueceu sua senha?"),
         "fullName": MessageLookupByLibrary.simpleMessage("Nome Completo"),
+        "hello": MessageLookupByLibrary.simpleMessage("Olá,"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "password": MessageLookupByLibrary.simpleMessage("Senha"),
         "passwordConfirmation":
             MessageLookupByLibrary.simpleMessage("Confirmação de Senha"),
@@ -42,6 +44,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Receber atualizações por e-mail"),
         "register": MessageLookupByLibrary.simpleMessage("Registro"),
         "registerYourself": MessageLookupByLibrary.simpleMessage("Registre-se"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Registrar")
+        "sessionSuccessDescription": MessageLookupByLibrary.simpleMessage(
+            "Você foi logado com sucesso!"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Registrar"),
+        "user": MessageLookupByLibrary.simpleMessage("Usuário")
       };
 }
