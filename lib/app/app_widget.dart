@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/app/shared/change_notifier/user_changer.dart';
 import 'package:flutter_challenge/app/shared/model/user/user_model.dart';
+import 'package:flutter_challenge/generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'helpers/colors_helper.dart';
 import 'helpers/constants.dart';
@@ -106,12 +108,23 @@ class ChildMaterialApp extends StatelessWidget {
           ),
         ),
       ),
-      onGenerateTitle: (BuildContext context) => "Flutter Challenge",
+      localizationsDelegates: _buildLocalizationsDelegates(),
+      supportedLocales: S.delegate.supportedLocales,
+      onGenerateTitle: (BuildContext context) => S.of(context).appTitle,
       onGenerateRoute: (route) => R.generateRoute(
         route,
         isUserLogged: session.isUserLogged(),
       ),
       initialRoute: R.homePage,
     );
+  }
+
+  List<LocalizationsDelegate> _buildLocalizationsDelegates() {
+    return [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+      S.delegate
+    ];
   }
 }

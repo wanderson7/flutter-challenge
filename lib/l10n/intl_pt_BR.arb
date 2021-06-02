@@ -1,0 +1,10 @@
+{
+  "appTitle": "Flutter Challenge",
+  "continueWithYour" : "Continue com o seu",
+  "login": "Login",
+  "email": "E-mail",
+  "password": "Senha",
+  "doNotYouHaveAnAccount": "Não tem uma conta? ",
+  "register": "Registre-se",
+  "forgotYourPassword": "Esqueceu sua senha?"
+}

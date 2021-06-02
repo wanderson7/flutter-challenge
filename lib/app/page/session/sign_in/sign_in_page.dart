@@ -6,6 +6,7 @@ import 'package:flutter_challenge/app/helpers/validator_helper.dart';
 import 'package:flutter_challenge/app/shared/components/button/custom_button.dart';
 import 'package:flutter_challenge/app/shared/components/progress/dialog/progress_dialog.dart';
 import 'package:flutter_challenge/app/shared/components/textForm/password_text_form.dart';
+import 'package:flutter_challenge/generated/l10n.dart';
 import 'package:stacked/stacked.dart';
 
 import 'sign_in_view_model.dart';
@@ -83,21 +84,21 @@ class _SignInPageState extends State<SignInPage> {
 
   Widget _buildTextDescription(BuildContext context) {
     return Text(
-      "Continue com o seu",
+      S.current.continueWithYour,
       style: Theme.of(context).textTheme.headline6,
     );
   }
 
   Widget _buildTextTitle(BuildContext context) {
     return Text(
-      "Login",
+      S.current.login,
       style: Theme.of(context).textTheme.headline4,
     );
   }
 
   Widget _buildTextFormFieldEmail() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "E-mail"),
+      decoration: InputDecoration(labelText: S.current.email),
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
@@ -108,7 +109,7 @@ class _SignInPageState extends State<SignInPage> {
 
   Widget _buildTextFormFieldPassword() {
     return PasswordTextFormField(
-      text: "Senha",
+      text: S.current.password,
       validator: (text) => Validator.passwordRule(text),
       onSaved: (text) => _viewModel.passwordValue = text,
     );
@@ -120,14 +121,14 @@ class _SignInPageState extends State<SignInPage> {
       child: TextButton(
         style: TextButton.styleFrom(primary: C.white),
         onPressed: () {},
-        child: Text("Esqueceu sua senha?"),
+        child: Text(S.current.forgotYourPassword),
       ),
     );
   }
 
   Widget _buildButtonLogin() {
     return CustomButton(
-      text: "Login",
+      text: S.current.login,
       onPressed: () {
         _viewModel.validateForm();
       },
@@ -141,10 +142,10 @@ class _SignInPageState extends State<SignInPage> {
         onPressed: () => _viewModel.showSignUpPage(),
         child: RichText(
           text: TextSpan(
-            text: 'Não tem uma conta? ',
-            children: const <TextSpan>[
+            text: S.current.doNotYouHaveAnAccount,
+            children: <TextSpan>[
               TextSpan(
-                text: "REGISTRE-SE",
+                text: S.current.register.toUpperCase(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: C.accent,
