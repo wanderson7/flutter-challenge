@@ -98,7 +98,7 @@ class _SignUpPageState extends State<SignUpPage> {
       textCapitalization: TextCapitalization.words,
       textInputAction: TextInputAction.next,
       onSaved: (newValue) => _viewModel.userForm.name = newValue,
-      validator: (value) => Validator.fieldIsEmpty(value!),
+      validator: (value) => Validator.fullNameRule(value!),
     );
   }
 

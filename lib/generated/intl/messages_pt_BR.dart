@@ -78,15 +78,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "requiredField":
             MessageLookupByLibrary.simpleMessage("Campo obrigatório"),
         "requiredFieldConfirmPassword": MessageLookupByLibrary.simpleMessage(
-            "Senha e confirmação de senha não coincidem"),
+            "A confirmação de senha deve ser igual à senha inserida"),
         "requiredFieldValidCPF":
             MessageLookupByLibrary.simpleMessage("Informe um CPF válido"),
         "requiredFieldValidEmail":
             MessageLookupByLibrary.simpleMessage("Informe um e-mail válido"),
+        "requiredFieldValidFullName": MessageLookupByLibrary.simpleMessage(
+            "Nome e sobrenome são necessários"),
         "requiredFieldValidPassword": MessageLookupByLibrary.simpleMessage(
             "Mínimo 8 caracteres, ao menos uma letra maiúscula e um número"),
-        "requiredFieldValidPhoneNumber":
-            MessageLookupByLibrary.simpleMessage("Informe um celular válido"),
+        "requiredFieldValidPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Informe um celular válido com 11 dígitos, contando com o DDD"),
         "sessionSuccessDescription": MessageLookupByLibrary.simpleMessage(
             "Você foi logado com sucesso!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrar"),

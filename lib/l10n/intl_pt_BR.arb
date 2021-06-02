@@ -23,11 +23,12 @@
   "ok" : "OK",
 
   "requiredField": "Campo obrigatório",
+  "requiredFieldValidFullName": "Nome e sobrenome são necessários",
   "requiredFieldValidEmail": "Informe um e-mail válido",
   "requiredFieldValidPassword" : "Mínimo 8 caracteres, ao menos uma letra maiúscula e um número",
   "requiredFieldValidCPF" : "Informe um CPF válido",
-  "requiredFieldValidPhoneNumber" : "Informe um celular válido",
-  "requiredFieldConfirmPassword" : "Senha e confirmação de senha não coincidem",
+  "requiredFieldValidPhoneNumber" : "Informe um celular válido com 11 dígitos, contando com o DDD",
+  "requiredFieldConfirmPassword" : "A confirmação de senha deve ser igual à senha inserida",
 
   "checkConnectionInternet": "Verifique sua conexão e tente novamente.",
   "errorConnectTimeout" : "Ocorreu um erro, {operation} com tempo limite excedido de conexão",

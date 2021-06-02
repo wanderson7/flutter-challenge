@@ -280,6 +280,16 @@ class S {
     );
   }
 
+  /// `Nome e sobrenome são necessários`
+  String get requiredFieldValidFullName {
+    return Intl.message(
+      'Nome e sobrenome são necessários',
+      name: 'requiredFieldValidFullName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Informe um e-mail válido`
   String get requiredFieldValidEmail {
     return Intl.message(
@@ -310,20 +320,20 @@ class S {
     );
   }
 
-  /// `Informe um celular válido`
+  /// `Informe um celular válido com 11 dígitos, contando com o DDD`
   String get requiredFieldValidPhoneNumber {
     return Intl.message(
-      'Informe um celular válido',
+      'Informe um celular válido com 11 dígitos, contando com o DDD',
       name: 'requiredFieldValidPhoneNumber',
       desc: '',
       args: [],
     );
   }
 
-  /// `Senha e confirmação de senha não coincidem`
+  /// `A confirmação de senha deve ser igual à senha inserida`
   String get requiredFieldConfirmPassword {
     return Intl.message(
-      'Senha e confirmação de senha não coincidem',
+      'A confirmação de senha deve ser igual à senha inserida',
       name: 'requiredFieldConfirmPassword',
       desc: '',
       args: [],

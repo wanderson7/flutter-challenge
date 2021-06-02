@@ -127,6 +127,7 @@ class BaseMaterialApp extends StatelessWidget {
       focusedErrorBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: C.danger),
       ),
+      errorMaxLines: 2,
     );
   }
 

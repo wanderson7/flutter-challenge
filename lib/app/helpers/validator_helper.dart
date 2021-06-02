@@ -4,9 +4,12 @@ import 'constants.dart';
 import 'formatter_helper.dart';
 
 class Validator {
-  static String? fieldIsEmpty(String? value) {
+  static String? fullNameRule(String? value) {
     if (value == null) return S.current.requiredField;
     if (value.trim().isEmpty) return S.current.requiredField;
+    const String pattern = r'^(?:.*\b\w{3,}\b.*){2,}$';
+    final RegExp regex = RegExp(pattern);
+    if (!regex.hasMatch(value)) return S.current.requiredFieldValidFullName;
     return null;
   }
 
@@ -22,7 +25,7 @@ class Validator {
   static String? passwordRule(String? value) {
     if (value == null) return S.current.requiredField;
     if (value.isEmpty) return S.current.requiredField;
-    if (value.length < 8) return S.current.requiredFieldValidPassword;
+    if (value.length < K.passwordLength) return S.current.requiredFieldValidPassword;
     const String pattern = r'^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$';
     final RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) return S.current.requiredFieldValidPassword;
@@ -48,7 +51,7 @@ class Validator {
     return null;
   }
 
-  static String? cpfRule(String? value, {int cpfLength = 14}) {
+  static String? cpfRule(String? value, {int cpfLength = K.cpfLength}) {
     if (value == null) return S.current.requiredField;
     if (value.isEmpty) return S.current.requiredField;
     if (value.length != cpfLength || !value.isValidCpf)

@@ -5,7 +5,9 @@ K? get buildEnv => _env;
 K? _env;
 
 class K {
-  static const phoneNumberLength = 14;
+  static const passwordLength = 8;
+  static const phoneNumberLength = 15;
+  static const cpfLength = 14;
   static const userModel = 'user-model';
   static const userIsLogged = 'user-is-logged';
   
