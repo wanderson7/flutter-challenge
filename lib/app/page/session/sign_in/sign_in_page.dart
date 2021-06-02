@@ -5,7 +5,11 @@ import 'package:flutter_challenge/app/helpers/colors_helper.dart';
 import 'package:flutter_challenge/app/helpers/router_helper.dart';
 import 'package:flutter_challenge/app/helpers/validator_helper.dart';
 import 'package:flutter_challenge/app/shared/components/button/custom_button.dart';
+import 'package:flutter_challenge/app/shared/components/progress/dialog/progress_dialog.dart';
 import 'package:flutter_challenge/app/shared/components/textForm/password_text_form.dart';
+import 'package:stacked/stacked.dart';
+
+import 'sign_in_view_model.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -13,14 +17,20 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final _formKey = GlobalKey<FormState>();
-  var _autoValidate = AutovalidateMode.disabled;
-  String? _emailValue;
-  String? _passwordValue;
-  bool _visible = false;
+  late SignInViewModel _viewModel;
 
   @override
   Widget build(BuildContext context) {
+    return ViewModelBuilder<SignInViewModel>.reactive(
+      viewModelBuilder: () => SignInViewModel(context),
+      builder: (context, model, child) {
+        _viewModel = model;
+        return _buildRoot(context);
+      },
+    );
+  }
+
+  AnnotatedRegion<SystemUiOverlayStyle> _buildRoot(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
@@ -29,31 +39,34 @@ class _SignInPageState extends State<SignInPage> {
       ),
       child: Scaffold(
         body: Form(
-          key: _formKey,
-          autovalidateMode: _autoValidate,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: deviceHeight * 0.1),
-                  _buildImageLogo(),
-                  SizedBox(height: 32),
-                  _buildTextDescription(context),
-                  _buildTextTitle(context),
-                  SizedBox(height: 32),
-                  _buildTextFormFieldEmail(),
-                  SizedBox(height: 16),
-                  _buildTextFormFieldPassword(),
-                  SizedBox(height: 16),
-                  _buildTextButtonForgetPassword(),
-                  SizedBox(height: deviceHeight * 0.1),
-                  _buildButtonLogin(),
-                  SizedBox(height: 16),
-                  _buildTextButtonRegisterUser(),
-                ],
+          key: _viewModel.formKey,
+          autovalidateMode: _viewModel.autoValidate,
+          child: ProgressDialog(
+            isLoading: _viewModel.isBusy,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: deviceHeight * 0.1),
+                    _buildImageLogo(),
+                    SizedBox(height: 32),
+                    _buildTextDescription(context),
+                    _buildTextTitle(context),
+                    SizedBox(height: 32),
+                    _buildTextFormFieldEmail(),
+                    SizedBox(height: 16),
+                    _buildTextFormFieldPassword(),
+                    SizedBox(height: 16),
+                    _buildTextButtonForgetPassword(),
+                    SizedBox(height: deviceHeight * 0.1),
+                    _buildButtonLogin(),
+                    SizedBox(height: 16),
+                    _buildTextButtonRegisterUser(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -90,7 +103,7 @@ class _SignInPageState extends State<SignInPage> {
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       validator: Validator.emailRule,
-      onSaved: (newValue) => _emailValue = newValue!.trim(),
+      onSaved: (newValue) => _viewModel.emailValue = newValue!.trim(),
     );
   }
 
@@ -98,7 +111,7 @@ class _SignInPageState extends State<SignInPage> {
     return PasswordTextFormField(
       text: "Senha",
       validator: (text) => Validator.passwordRule(text),
-      onSaved: (text) => _passwordValue = text,
+      onSaved: (text) => _viewModel.passwordValue = text,
     );
   }
 
@@ -117,7 +130,7 @@ class _SignInPageState extends State<SignInPage> {
     return CustomButton(
       text: "Login",
       onPressed: () {
-        _validateForm();
+        _viewModel.validateForm();
       },
     );
   }
@@ -126,7 +139,7 @@ class _SignInPageState extends State<SignInPage> {
     return Center(
       child: TextButton(
         style: TextButton.styleFrom(primary: C.grey),
-        onPressed: () => showSignUpPage(),
+        onPressed: () => _viewModel.showSignUpPage(),
         child: RichText(
           text: TextSpan(
             text: 'Não tem uma conta? ',
@@ -143,19 +156,5 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
     );
-  }
-
-  void showSignUpPage() {
-    Navigator.of(context).pushNamed(
-      R.signUpPage,
-    );
-  }
-
-  void _validateForm() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-    } else {
-      setState(() => _autoValidate = AutovalidateMode.always);
-    }
   }
 }

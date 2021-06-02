@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge/app/page/session/sign_in/sing_in_page.dart';
+import 'package:flutter_challenge/app/page/session/sign_in/sign_in_page.dart';
 import 'package:flutter_challenge/app/page/session/sign_up/sign_up_page.dart';
 
 class R {

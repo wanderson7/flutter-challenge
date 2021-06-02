@@ -1,21 +1,23 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'status_code.dart';
 
 class ServerError implements Exception {
   ServerError.withError({
-    @required dynamic error,
+    required String operation,
+    required dynamic dioError,
   }) {
-    if (error is DioError) {
+    _operation = operation;
+    if (dioError is DioError) {
       _errorApi = ErrorApi.fromJson(
-        error.response?.data,
-        error.response?.statusCode,
+        dioError.response?.data,
+        dioError.response?.statusCode,
       );
-      _dioErrorType = error.type;
+      _dioErrorType = dioError.type;
     }
   }
 
   ErrorApi? _errorApi;
+  late String _operation;
   DioErrorType? _dioErrorType;
 
   bool isUnauthorized() => _errorApi?.code == StatusCode.unauthorized;
@@ -37,7 +39,7 @@ class ServerError implements Exception {
       case DioErrorType.sendTimeout:
         return _getErroApi("Ocorreu um erro, tempo limite excedido");
       default:
-        return _getErroApi("Ocorreu um erro ao efetuar a operação. Verifique sua conexão e tente novamente.");
+        return _getErroApi("Ocorreu um erro. Verifique sua conexão e tente novamente.");
     }
   }
 
@@ -45,54 +47,40 @@ class ServerError implements Exception {
     switch (code) {
       case StatusCode.internalServerError:
         return _getErroApi(
-          "Error ${_errorApi?.code}",
-          title: "Atenção",
+          "Ocorreu um erro ao efetuar a $_operation. Verifique sua conexão e tente novamente.",
         );
       case StatusCode.notFound:
         return _getErroApi(
-          "Ocorreu um erro ao efetuar <a operação>. Verifique sua conexão e tente novamente.",
-          title: "Atenção",
+          "Erro interno",
         );
       default:
         return _errorApi;
     }
   }
 
-  ErrorApi? _getErroApi(
-    String? message, {
-    String? title,
-  }) {
-    _errorApi?.title = title ?? "Atenção";
-    _errorApi?.description = message;
+  ErrorApi? _getErroApi(String? message) {
+    _errorApi?.message = message;
     return _errorApi;
   }
 }
 
 class ErrorApi {
+  static const _jsonMessage = 'message';
+
+  int? code;
+  String? message;
+
   ErrorApi({
     this.code,
-    this.title,
-    this.description,
+    this.message,
   });
 
   ErrorApi.fromJson(dynamic json, int? code) {
     this.code = code ?? -1;
-    if (json != null &&
-        json is Map<String, dynamic> &&
-        json[_jsonError] is Map<String, dynamic>) {
-      final error = json[_jsonError];
-      title = error[_jsonTitle] as String;
-      description = error[_jsonDescription] as String;
+    if (json != null) {
+      message = json[_jsonMessage];
     }
   }
-
-  static const _jsonError = 'error';
-  static const _jsonTitle = 'title';
-  static const _jsonDescription = 'description';
-
-  int? code;
-  String? title;
-  String? description;
 
   bool isInternalError() {
     return code == StatusCode.internalServerError || code == -1;

@@ -6,7 +6,7 @@ import 'package:flutter_challenge/app/helpers/text_input_mask.dart';
 import 'package:flutter_challenge/app/helpers/validator_helper.dart';
 import 'package:flutter_challenge/app/shared/components/button/custom_button.dart';
 import 'package:flutter_challenge/app/shared/components/textForm/password_text_form.dart';
-import 'package:flutter_challenge/app/shared/components/ui/update_allowed_widget.dart';
+import 'package:flutter_challenge/app/shared/components/ui/sign_up/update_allowed_widget.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
