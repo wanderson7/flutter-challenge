@@ -5,10 +5,8 @@ import 'package:flutter_challenge/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'helpers/colors_helper.dart';
-import 'helpers/constants.dart';
 import 'helpers/router_helper.dart';
 import 'helpers/text_helper.dart';
-import 'shared/change_notifier/session_changer.dart';
 
 class AppWidget extends StatefulWidget {
   @override
@@ -18,15 +16,11 @@ class AppWidget extends StatefulWidget {
 class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<Map<String, dynamic>>(context);
+    final userModel = Provider.of<UserModel?>(context);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UserChanger>(
-          create: (_) => UserChanger(provider[K.userModel] as UserModel?),
-        ),
-        ChangeNotifierProvider<SessionChanger>(
-          create: (_) =>
-              SessionChanger(isUserIsLogged: provider[K.userIsLogged] as bool),
+          create: (_) => UserChanger(userModel),
         ),
       ],
       child: BaseMaterialApp(),
@@ -37,7 +31,7 @@ class _AppWidgetState extends State<AppWidget> {
 class BaseMaterialApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final session = Provider.of<SessionChanger>(context);
+    final sessionChanger = Provider.of<UserChanger>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -59,7 +53,7 @@ class BaseMaterialApp extends StatelessWidget {
       onGenerateTitle: (BuildContext context) => S.of(context).appTitle,
       onGenerateRoute: (route) => R.generateRoute(
         route,
-        isUserLogged: session.isUserLogged(),
+        isUserLogged: sessionChanger.user != null,
       ),
       initialRoute: R.homePage,
     );

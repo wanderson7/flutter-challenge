@@ -15,20 +15,13 @@ void mainCommon(String environment) async {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  final bool isLogged = await UserSharedPreferences.isLogged();
   final UserModel? user = await UserSharedPreferences.getUser();
-
   K.init(value: environment);
   assert(buildEnv != null);
 
-  final Map<String, dynamic> params = {
-    K.userModel: user,
-    K.userIsLogged: isLogged,
-  };
-
   runApp(
     Provider.value(
-      value: params,
+      value: user,
       child: AppWidget(),
     ),
   );

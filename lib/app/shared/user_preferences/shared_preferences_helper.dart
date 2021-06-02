@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/app/page/session/sign_in/sign_in_page.dart';
-import 'package:flutter_challenge/app/shared/change_notifier/session_changer.dart';
 import 'package:flutter_challenge/app/shared/change_notifier/user_changer.dart';
 import 'package:flutter_challenge/app/shared/model/session/session_model.dart';
 import 'package:flutter_challenge/app/shared/model/user/user_model.dart';
@@ -19,9 +18,7 @@ class UserSharedPreferences {
     BuildContext context,
     SessionModel? session,
   ) async {
-    final sessionChanger = Provider.of<SessionChanger>(context, listen: false);
     final UserChanger userChanger = Provider.of<UserChanger>(context, listen: false);
-    sessionChanger.setUserLogged(isLogged: true);
     userChanger.setUserChanger(session?.user);
     await _save(_user, session?.user);
     await _save(_isLogged, true);
