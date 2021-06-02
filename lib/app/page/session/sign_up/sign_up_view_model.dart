@@ -5,6 +5,7 @@ import 'package:flutter_challenge/app/helpers/dialog_helper.dart';
 import 'package:flutter_challenge/app/helpers/router_helper.dart';
 import 'package:flutter_challenge/app/shared/model/form/user_form.dart';
 import 'package:flutter_challenge/app/shared/model/session/session_model.dart';
+import 'package:flutter_challenge/app/shared/user_preferences/shared_preferences_helper.dart';
 import 'package:stacked/stacked.dart';
 
 class SignUpViewModel extends BaseViewModel {
@@ -22,11 +23,15 @@ class SignUpViewModel extends BaseViewModel {
       _repository.onSignUpAsync(userForm),
       throwException: true,
     );
-    onShowMainPage(result);
+    _showMainPage(result);
   }
 
-  void onShowMainPage(SessionModel sessionModel) {
-    D.of(context).showDefaultAlert(sessionModel.user?.name);
+  void _showMainPage(SessionModel sessionModel) async {
+    await UserSharedPreferences.saveUserFromSessionSharedPrefence(
+      context,
+      sessionModel,
+    );
+    Navigator.of(context).pushNamedAndRemoveUntil(R.homePage, (route) => false);
   }
 
   void validateForm() {
@@ -48,7 +53,7 @@ class SignUpViewModel extends BaseViewModel {
   @override
   void onFutureError(dynamic dioError, Object? key) {
     final serverError = ServerError.withError(
-        operation: "Login".toLowerCase(), dioError: dioError);
+        operation: "Registro".toLowerCase(), dioError: dioError);
     D.of(context).showDefaultAlert(serverError.getErrorAPI()?.message);
   }
 }

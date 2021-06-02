@@ -4,6 +4,7 @@ import 'package:flutter_challenge/app/api/response/server_error.dart';
 import 'package:flutter_challenge/app/helpers/dialog_helper.dart';
 import 'package:flutter_challenge/app/helpers/router_helper.dart';
 import 'package:flutter_challenge/app/shared/model/session/session_model.dart';
+import 'package:flutter_challenge/app/shared/user_preferences/shared_preferences_helper.dart';
 import 'package:stacked/stacked.dart';
 
 class SignInViewModel extends BaseViewModel {
@@ -11,20 +12,27 @@ class SignInViewModel extends BaseViewModel {
   var autoValidate = AutovalidateMode.disabled;
   SessionRepository _repository = SessionRepository();
   BuildContext context;
-  SessionModel? sessionModel;
   String? emailValue;
   String? passwordValue;
   bool visible = false;
 
   SignInViewModel(this.context);
-  
+
   Future onSignIn() async {
     if (hasError) clearErrors();
     final result = await runBusyFuture(
       _repository.onSignInAsync(emailValue, passwordValue),
       throwException: true,
     );
-    sessionModel = result;
+    _showMainPage(result);
+  }
+
+  void _showMainPage(SessionModel sessionModel) async {
+    await UserSharedPreferences.saveUserFromSessionSharedPrefence(
+      context,
+      sessionModel,
+    );
+    Navigator.of(context).pushNamedAndRemoveUntil(R.homePage, (route) => false);
   }
 
   void showSignUpPage() {
@@ -46,7 +54,8 @@ class SignInViewModel extends BaseViewModel {
 
   @override
   void onFutureError(dynamic dioError, Object? key) {
-    final serverError = ServerError.withError(operation: "Login".toLowerCase(), dioError: dioError);
+    final serverError = ServerError.withError(
+        operation: "Login".toLowerCase(), dioError: dioError);
     D.of(context).showDefaultAlert(serverError.getErrorAPI()?.message);
   }
 }

@@ -1,11 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge/app/shared/change_notifier/user_changer.dart';
+import 'package:flutter_challenge/app/shared/model/user/user_model.dart';
+import 'package:provider/provider.dart';
 import 'helpers/colors_helper.dart';
+import 'helpers/constants.dart';
 import 'helpers/router_helper.dart';
 import 'helpers/text_helper.dart';
+import 'shared/change_notifier/session_changer.dart';
 
-class AppWidget extends StatelessWidget {
+class AppWidget extends StatefulWidget {
+  @override
+  _AppWidgetState createState() => _AppWidgetState();
+}
+
+class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<Map<String, dynamic>>(context);
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UserChanger>(
+          create: (_) => UserChanger(provider[K.userModel] as UserModel?),
+        ),
+        ChangeNotifierProvider<SessionChanger>(
+          create: (_) =>
+              SessionChanger(isUserIsLogged: provider[K.userIsLogged] as bool),
+        ),
+      ],
+      child: ChildMaterialApp(),
+    );
+  }
+}
+
+class ChildMaterialApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final session = Provider.of<SessionChanger>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -77,7 +107,10 @@ class AppWidget extends StatelessWidget {
         ),
       ),
       onGenerateTitle: (BuildContext context) => "Flutter Challenge",
-      onGenerateRoute: (route) => R.generateRoute(route),
+      onGenerateRoute: (route) => R.generateRoute(
+        route,
+        isUserLogged: session.isUserLogged(),
+      ),
       initialRoute: R.homePage,
     );
   }

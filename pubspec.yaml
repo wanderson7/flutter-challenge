@@ -16,6 +16,8 @@ dependencies:
   logger: ^1.0.0
   json_annotation: ^4.0.1
   stacked: ^2.1.7
+  shared_preferences: ^2.0.6
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:

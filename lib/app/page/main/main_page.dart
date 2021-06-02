@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_challenge/app/helpers/colors_helper.dart';
+import 'package:flutter_challenge/app/shared/change_notifier/user_changer.dart';
+import 'package:flutter_challenge/app/shared/user_preferences/shared_preferences_helper.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -8,8 +11,12 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  late UserChanger userChanger;
+
   @override
   Widget build(BuildContext context) {
+    userChanger = Provider.of<UserChanger>(context);
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
@@ -19,6 +26,7 @@ class _MainPageState extends State<MainPage> {
         appBar: AppBar(
           actions: [_buildAppBarActionLogout()],
           elevation: 0,
+          brightness: Brightness.dark,
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 48.0),
@@ -42,7 +50,7 @@ class _MainPageState extends State<MainPage> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextButton(
         style: TextButton.styleFrom(primary: C.accent),
-        onPressed: () {},
+        onPressed: () => UserSharedPreferences.logout(context),
         child: Text("Logout"),
       ),
     );
@@ -56,8 +64,9 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildTextUsername(BuildContext context) {
+    final userName = userChanger.user?.name ?? "Usuário";
     return Text(
-      "Usuário",
+      userName,
       style: Theme.of(context).textTheme.headline4,
     );
   }

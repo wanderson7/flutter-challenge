@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_challenge/app/helpers/asset_helper.dart';
 import 'package:flutter_challenge/app/helpers/colors_helper.dart';
-import 'package:flutter_challenge/app/helpers/router_helper.dart';
 import 'package:flutter_challenge/app/helpers/validator_helper.dart';
 import 'package:flutter_challenge/app/shared/components/button/custom_button.dart';
 import 'package:flutter_challenge/app/shared/components/progress/dialog/progress_dialog.dart';

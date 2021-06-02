@@ -6,6 +6,8 @@ K? _env;
 
 class K {
   static const phoneNumberLength = 14;
+  static const userModel = 'user-model';
+  static const userIsLogged = 'user-is-logged';
   
   K._init({this.environment});
 
