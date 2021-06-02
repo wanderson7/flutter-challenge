@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_challenge/generated/l10n.dart';
 import 'status_code.dart';
 
 class ServerError implements Exception {
@@ -29,15 +30,15 @@ class ServerError implements Exception {
   ErrorApi? _handleError(DioErrorType? errorType) {
     switch (_dioErrorType) {
       case DioErrorType.cancel:
-        return _getErroApi("Ocorreu um erro, operação cancelada");
+        return _getErroApi(S.current.errorCancel(_operation));
       case DioErrorType.connectTimeout:
-        return _getErroApi("Ocorreu um erro, tempo limite excedido");
+        return _getErroApi(S.current.errorConnectTimeout(_operation));
       case DioErrorType.receiveTimeout:
-        return _getErroApi("Ocorreu um erro, tempo limite excedido");
+        return _getErroApi(S.current.errorReceiveTimeout(_operation));
+      case DioErrorType.sendTimeout:
+        return _getErroApi(S.current.errorSendTimeout(_operation));
       case DioErrorType.response:
         return _checkErrorCode(_errorApi?.code ?? 0);
-      case DioErrorType.sendTimeout:
-        return _getErroApi("Ocorreu um erro, tempo limite excedido");
       default:
         return _getErroApi();
     }
@@ -47,11 +48,11 @@ class ServerError implements Exception {
     switch (code) {
       case StatusCode.internalServerError:
         return _getErroApi(
-          "Ocorreu um erro ao efetuar o $_operation. Erro interno",
+          S.current.errorInternalServerError(_operation),
         );
       case StatusCode.notFound:
         return _getErroApi(
-          "Ocorreu um erro ao efetuar o $_operation. Requisação não encontrada",
+          S.current.errorNotFound(_operation),
         );
       default:
         return _errorApi;
@@ -59,7 +60,8 @@ class ServerError implements Exception {
   }
 
   ErrorApi? _getErroApi([String? message]) {
-    _errorApi?.message = message ?? "Ocorreu um erro ao efetuar o $_operation. Verifique sua conexão e tente novamente.";
+    _errorApi?.message =
+        message ?? S.current.errorConnectionInternet(_operation);
     return _errorApi;
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter_challenge/app/helpers/router_helper.dart';
 import 'package:flutter_challenge/app/shared/model/form/user_form.dart';
 import 'package:flutter_challenge/app/shared/model/session/session_model.dart';
 import 'package:flutter_challenge/app/shared/user_preferences/shared_preferences_helper.dart';
+import 'package:flutter_challenge/generated/l10n.dart';
 import 'package:stacked/stacked.dart';
 
 class SignUpViewModel extends BaseViewModel {
@@ -53,7 +54,9 @@ class SignUpViewModel extends BaseViewModel {
   @override
   void onFutureError(dynamic dioError, Object? key) {
     final serverError = ServerError.withError(
-        operation: "Registro".toLowerCase(), dioError: dioError);
+      operation: S.current.register.toLowerCase(),
+      dioError: dioError,
+    );
     D.of(context).showDefaultAlert(serverError.getErrorAPI()?.message);
   }
 }

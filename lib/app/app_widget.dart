@@ -29,12 +29,12 @@ class _AppWidgetState extends State<AppWidget> {
               SessionChanger(isUserIsLogged: provider[K.userIsLogged] as bool),
         ),
       ],
-      child: ChildMaterialApp(),
+      child: BaseMaterialApp(),
     );
   }
 }
 
-class ChildMaterialApp extends StatelessWidget {
+class BaseMaterialApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final session = Provider.of<SessionChanger>(context);
@@ -42,71 +42,17 @@ class ChildMaterialApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: C.primary,
-        buttonTheme: const ButtonThemeData(
-          alignedDropdown: true,
-          padding: EdgeInsets.all(8),
-          minWidth: 12,
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          labelStyle: TextStyle(color: C.grey),
-          hintStyle: TextStyle(color: Colors.white),
-          errorStyle: TextStyle(color: C.danger),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: C.grey),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: C.white),
-          ),
-          border: UnderlineInputBorder(
-            borderSide: BorderSide(color: C.white),
-          ),
-          errorBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: C.danger),
-          ),
-          focusedErrorBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: C.danger),
-          ),
-        ),
         primaryColor: C.primary,
         accentColor: C.accent,
-        textSelectionTheme: TextSelectionThemeData(
-          cursorColor: C.accent,
-        ),
         primaryColorLight: Colors.white,
         primaryColorDark: Colors.white,
         hintColor: Colors.white,
         brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        textTheme: const TextTheme(
-          subtitle1: TextStyle(color: Colors.white),
-          headline4: TextStyle(
-            fontSize: 32,
-            letterSpacing: 0.15,
-            color: C.white,
-            fontWeight: TextHelper.bold,
-          ),
-          headline6: TextStyle(
-            fontSize: 24,
-            letterSpacing: 0.15,
-            color: C.grey,
-            fontWeight: TextHelper.regular,
-          ),
-          bodyText1: TextStyle(
-            fontSize: 16,
-            fontWeight: TextHelper.regular,
-            color: C.white,
-          ),
-          bodyText2: TextStyle(
-            fontSize: 14,
-            fontWeight: TextHelper.regular,
-            color: C.white,
-          ),
-          caption: TextStyle(
-            fontSize: 12,
-            fontWeight: TextHelper.regular,
-            color: C.danger,
-          ),
-        ),
+        textSelectionTheme: TextSelectionThemeData(cursorColor: C.accent),
+        buttonTheme: _buildButtonThemeData(),
+        textTheme: _buildTextTheme(),
+        inputDecorationTheme: _buildInputDecorationTheme(),
       ),
       localizationsDelegates: _buildLocalizationsDelegates(),
       supportedLocales: S.delegate.supportedLocales,
@@ -126,5 +72,69 @@ class ChildMaterialApp extends StatelessWidget {
       GlobalCupertinoLocalizations.delegate,
       S.delegate
     ];
+  }
+
+  TextTheme _buildTextTheme() {
+    return TextTheme(
+      subtitle1: TextStyle(color: Colors.white),
+      headline4: TextStyle(
+        fontSize: 32,
+        letterSpacing: 0.15,
+        color: C.white,
+        fontWeight: TextHelper.bold,
+      ),
+      headline6: TextStyle(
+        fontSize: 24,
+        letterSpacing: 0.15,
+        color: C.grey,
+        fontWeight: TextHelper.regular,
+      ),
+      bodyText1: TextStyle(
+        fontSize: 16,
+        fontWeight: TextHelper.regular,
+        color: C.white,
+      ),
+      bodyText2: TextStyle(
+        fontSize: 14,
+        fontWeight: TextHelper.regular,
+        color: C.white,
+      ),
+      caption: TextStyle(
+        fontSize: 12,
+        fontWeight: TextHelper.regular,
+        color: C.danger,
+      ),
+    );
+  }
+
+  InputDecorationTheme _buildInputDecorationTheme() {
+    return InputDecorationTheme(
+      labelStyle: TextStyle(color: C.grey),
+      hintStyle: TextStyle(color: Colors.white),
+      errorStyle: TextStyle(color: C.danger),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: C.grey),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: C.white),
+      ),
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(color: C.white),
+      ),
+      errorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: C.danger),
+      ),
+      focusedErrorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: C.danger),
+      ),
+    );
+  }
+
+  ButtonThemeData _buildButtonThemeData() {
+    return ButtonThemeData(
+      alignedDropdown: true,
+      padding: EdgeInsets.all(8),
+      minWidth: 12,
+    );
   }
 }

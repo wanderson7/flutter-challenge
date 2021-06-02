@@ -18,5 +18,23 @@
   "hello": "Olá,",
   "sessionSuccessDescription" : "Você foi logado com sucesso!",
   "user": "Usuário",
-  "logout" : "Logout"
+  "logout" : "Logout",
+  "headsUp" : "Atenção",
+  "ok" : "OK",
+
+  "requiredField": "Campo obrigatório",
+  "requiredFieldValidEmail": "Informe um e-mail válido",
+  "requiredFieldValidPassword" : "Mínimo 8 caracteres, letras e números",
+  "requiredFieldValidCPF" : "Informe um CPF válido",
+  "requiredFieldValidPhoneNumber" : "Informe um celular válido",
+  "requiredFieldConfirmPassword" : "Senha e confirmação de senha não coincidem",
+
+  "checkConnectionInternet": "Verifique sua conexão e tente novamente.",
+  "errorConnectTimeout" : "Ocorreu um erro, {operation} com tempo limite excedido de conexão",
+  "errorReceiveTimeout" : "Ocorreu um erro, {operation} com tempo limite excedido de resposta",
+  "errorSendTimeout" : "Ocorreu um erro, {operation} com tempo limite excedido de envio",
+  "errorInternalServerError" :  "Ocorreu um erro ao efetuar o {operation}. Erro interno",
+  "errorNotFound" :  "Ocorreu um erro ao efetuar o {operation}. Requisação não encontrada",
+  "errorConnectionInternet" :  "Ocorreu um erro ao efetuar o {operation}. Verifique sua conexão e tente novamente.",
+  "errorCancel": "Ocorreu um erro, {operation} cancelado"
 }

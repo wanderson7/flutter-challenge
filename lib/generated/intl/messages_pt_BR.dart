@@ -19,9 +19,31 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'pt_BR';
 
+  static String m0(operation) => "Ocorreu um erro, ${operation} cancelado";
+
+  static String m1(operation) =>
+      "Ocorreu um erro, ${operation} com tempo limite excedido de conexão";
+
+  static String m2(operation) =>
+      "Ocorreu um erro ao efetuar o ${operation}. Verifique sua conexão e tente novamente.";
+
+  static String m3(operation) =>
+      "Ocorreu um erro ao efetuar o ${operation}. Erro interno";
+
+  static String m4(operation) =>
+      "Ocorreu um erro ao efetuar o ${operation}. Requisação não encontrada";
+
+  static String m5(operation) =>
+      "Ocorreu um erro, ${operation} com tempo limite excedido de resposta";
+
+  static String m6(operation) =>
+      "Ocorreu um erro, ${operation} com tempo limite excedido de envio";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("Flutter Challenge"),
+        "checkConnectionInternet": MessageLookupByLibrary.simpleMessage(
+            "Verifique sua conexão e tente novamente."),
         "continueWithYour":
             MessageLookupByLibrary.simpleMessage("Continue com o seu"),
         "cpf": MessageLookupByLibrary.simpleMessage("CPF"),
@@ -30,12 +52,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "doYouAlreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Já possui uma conta? "),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "errorCancel": m0,
+        "errorConnectTimeout": m1,
+        "errorConnectionInternet": m2,
+        "errorInternalServerError": m3,
+        "errorNotFound": m4,
+        "errorReceiveTimeout": m5,
+        "errorSendTimeout": m6,
         "forgotYourPassword":
             MessageLookupByLibrary.simpleMessage("Esqueceu sua senha?"),
         "fullName": MessageLookupByLibrary.simpleMessage("Nome Completo"),
+        "headsUp": MessageLookupByLibrary.simpleMessage("Atenção"),
         "hello": MessageLookupByLibrary.simpleMessage("Olá,"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "password": MessageLookupByLibrary.simpleMessage("Senha"),
         "passwordConfirmation":
             MessageLookupByLibrary.simpleMessage("Confirmação de Senha"),
@@ -44,6 +75,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "Receber atualizações por e-mail"),
         "register": MessageLookupByLibrary.simpleMessage("Registro"),
         "registerYourself": MessageLookupByLibrary.simpleMessage("Registre-se"),
+        "requiredField":
+            MessageLookupByLibrary.simpleMessage("Campo obrigatório"),
+        "requiredFieldConfirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Senha e confirmação de senha não coincidem"),
+        "requiredFieldValidCPF":
+            MessageLookupByLibrary.simpleMessage("Informe um CPF válido"),
+        "requiredFieldValidEmail":
+            MessageLookupByLibrary.simpleMessage("Informe um e-mail válido"),
+        "requiredFieldValidPassword": MessageLookupByLibrary.simpleMessage(
+            "Mínimo 8 caracteres, letras e números"),
+        "requiredFieldValidPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Informe um celular válido"),
         "sessionSuccessDescription": MessageLookupByLibrary.simpleMessage(
             "Você foi logado com sucesso!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrar"),

@@ -249,6 +249,166 @@ class S {
       args: [],
     );
   }
+
+  /// `Atenção`
+  String get headsUp {
+    return Intl.message(
+      'Atenção',
+      name: 'headsUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Campo obrigatório`
+  String get requiredField {
+    return Intl.message(
+      'Campo obrigatório',
+      name: 'requiredField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informe um e-mail válido`
+  String get requiredFieldValidEmail {
+    return Intl.message(
+      'Informe um e-mail válido',
+      name: 'requiredFieldValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mínimo 8 caracteres, letras e números`
+  String get requiredFieldValidPassword {
+    return Intl.message(
+      'Mínimo 8 caracteres, letras e números',
+      name: 'requiredFieldValidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informe um CPF válido`
+  String get requiredFieldValidCPF {
+    return Intl.message(
+      'Informe um CPF válido',
+      name: 'requiredFieldValidCPF',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informe um celular válido`
+  String get requiredFieldValidPhoneNumber {
+    return Intl.message(
+      'Informe um celular válido',
+      name: 'requiredFieldValidPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Senha e confirmação de senha não coincidem`
+  String get requiredFieldConfirmPassword {
+    return Intl.message(
+      'Senha e confirmação de senha não coincidem',
+      name: 'requiredFieldConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verifique sua conexão e tente novamente.`
+  String get checkConnectionInternet {
+    return Intl.message(
+      'Verifique sua conexão e tente novamente.',
+      name: 'checkConnectionInternet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ocorreu um erro, {operation} com tempo limite excedido de conexão`
+  String errorConnectTimeout(Object operation) {
+    return Intl.message(
+      'Ocorreu um erro, $operation com tempo limite excedido de conexão',
+      name: 'errorConnectTimeout',
+      desc: '',
+      args: [operation],
+    );
+  }
+
+  /// `Ocorreu um erro, {operation} com tempo limite excedido de resposta`
+  String errorReceiveTimeout(Object operation) {
+    return Intl.message(
+      'Ocorreu um erro, $operation com tempo limite excedido de resposta',
+      name: 'errorReceiveTimeout',
+      desc: '',
+      args: [operation],
+    );
+  }
+
+  /// `Ocorreu um erro, {operation} com tempo limite excedido de envio`
+  String errorSendTimeout(Object operation) {
+    return Intl.message(
+      'Ocorreu um erro, $operation com tempo limite excedido de envio',
+      name: 'errorSendTimeout',
+      desc: '',
+      args: [operation],
+    );
+  }
+
+  /// `Ocorreu um erro ao efetuar o {operation}. Erro interno`
+  String errorInternalServerError(Object operation) {
+    return Intl.message(
+      'Ocorreu um erro ao efetuar o $operation. Erro interno',
+      name: 'errorInternalServerError',
+      desc: '',
+      args: [operation],
+    );
+  }
+
+  /// `Ocorreu um erro ao efetuar o {operation}. Requisação não encontrada`
+  String errorNotFound(Object operation) {
+    return Intl.message(
+      'Ocorreu um erro ao efetuar o $operation. Requisação não encontrada',
+      name: 'errorNotFound',
+      desc: '',
+      args: [operation],
+    );
+  }
+
+  /// `Ocorreu um erro ao efetuar o {operation}. Verifique sua conexão e tente novamente.`
+  String errorConnectionInternet(Object operation) {
+    return Intl.message(
+      'Ocorreu um erro ao efetuar o $operation. Verifique sua conexão e tente novamente.',
+      name: 'errorConnectionInternet',
+      desc: '',
+      args: [operation],
+    );
+  }
+
+  /// `Ocorreu um erro, {operation} cancelado`
+  String errorCancel(Object operation) {
+    return Intl.message(
+      'Ocorreu um erro, $operation cancelado',
+      name: 'errorCancel',
+      desc: '',
+      args: [operation],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

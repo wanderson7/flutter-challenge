@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge/generated/l10n.dart';
 
 import 'colors_helper.dart';
 
@@ -70,7 +71,7 @@ class D {
         title: Padding(
           padding: const EdgeInsets.only(bottom: 8),
           child: Text(
-            title ?? "Atenção",
+            title ?? S.current.headsUp,
           ),
         ),
         content: _getMessage(message),
@@ -84,9 +85,11 @@ class D {
           right: 24,
         ),
         title: Text(
-          title ?? "Atenção",
-          style:
-              Theme.of(context).textTheme.headline6?.copyWith(color: Colors.black87),
+          title ?? S.current.headsUp,
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: Colors.black87),
         ),
         content: _getMessage(message),
         actions: actions,
@@ -104,8 +107,8 @@ class D {
 
   Future<T?> showDefaultAlert<T>([String? message]) {
     return showAlert(
-      message: message ?? "Erro de conexão com a internet",
-      confirmButton: "OK",
+      message: message ?? S.current.checkConnectionInternet,
+      confirmButton: S.current.ok,
       onPressedConfirm: () {
         Navigator.of(context).pop();
       },
@@ -114,9 +117,11 @@ class D {
 
   Widget _getMessage(String? message) {
     return Text(
-      message ?? "Erro de conexão com a internet",
-       style:
-              Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.grey[700]),
+      message ?? S.current.checkConnectionInternet,
+      style: Theme.of(context)
+          .textTheme
+          .bodyText1
+          ?.copyWith(color: Colors.grey[700]),
     );
   }
 }
