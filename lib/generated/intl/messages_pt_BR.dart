@@ -84,7 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requiredFieldValidEmail":
             MessageLookupByLibrary.simpleMessage("Informe um e-mail válido"),
         "requiredFieldValidPassword": MessageLookupByLibrary.simpleMessage(
-            "Mínimo 8 caracteres, letras e números"),
+            "Mínimo 8 caracteres, ao menos uma letra maiúscula e um número"),
         "requiredFieldValidPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Informe um celular válido"),
         "sessionSuccessDescription": MessageLookupByLibrary.simpleMessage(

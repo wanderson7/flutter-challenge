@@ -23,7 +23,7 @@ class Validator {
     if (value == null) return S.current.requiredField;
     if (value.isEmpty) return S.current.requiredField;
     if (value.length < 8) return S.current.requiredFieldValidPassword;
-    const String pattern = r'(?=.*[a-zA-Z])(?=.*[\d]).+';
+    const String pattern = r'^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$';
     final RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) return S.current.requiredFieldValidPassword;
     return null;

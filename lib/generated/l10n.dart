@@ -290,10 +290,10 @@ class S {
     );
   }
 
-  /// `Mínimo 8 caracteres, letras e números`
+  /// `Mínimo 8 caracteres, ao menos uma letra maiúscula e um número`
   String get requiredFieldValidPassword {
     return Intl.message(
-      'Mínimo 8 caracteres, letras e números',
+      'Mínimo 8 caracteres, ao menos uma letra maiúscula e um número',
       name: 'requiredFieldValidPassword',
       desc: '',
       args: [],

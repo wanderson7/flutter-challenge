@@ -24,7 +24,7 @@
 
   "requiredField": "Campo obrigatório",
   "requiredFieldValidEmail": "Informe um e-mail válido",
-  "requiredFieldValidPassword" : "Mínimo 8 caracteres, letras e números",
+  "requiredFieldValidPassword" : "Mínimo 8 caracteres, ao menos uma letra maiúscula e um número",
   "requiredFieldValidCPF" : "Informe um CPF válido",
   "requiredFieldValidPhoneNumber" : "Informe um celular válido",
   "requiredFieldConfirmPassword" : "Senha e confirmação de senha não coincidem",
