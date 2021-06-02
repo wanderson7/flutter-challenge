@@ -39,7 +39,7 @@ class ServerError implements Exception {
       case DioErrorType.sendTimeout:
         return _getErroApi("Ocorreu um erro, tempo limite excedido");
       default:
-        return _getErroApi("Ocorreu um erro. Verifique sua conexão e tente novamente.");
+        return _getErroApi();
     }
   }
 
@@ -47,19 +47,19 @@ class ServerError implements Exception {
     switch (code) {
       case StatusCode.internalServerError:
         return _getErroApi(
-          "Ocorreu um erro ao efetuar a $_operation. Verifique sua conexão e tente novamente.",
+          "Ocorreu um erro ao efetuar o $_operation. Erro interno",
         );
       case StatusCode.notFound:
         return _getErroApi(
-          "Erro interno",
+          "Ocorreu um erro ao efetuar o $_operation. Requisação não encontrada",
         );
       default:
         return _errorApi;
     }
   }
 
-  ErrorApi? _getErroApi(String? message) {
-    _errorApi?.message = message;
+  ErrorApi? _getErroApi([String? message]) {
+    _errorApi?.message = message ?? "Ocorreu um erro ao efetuar o $_operation. Verifique sua conexão e tente novamente.";
     return _errorApi;
   }
 }

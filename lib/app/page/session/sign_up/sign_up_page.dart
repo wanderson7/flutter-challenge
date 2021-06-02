@@ -4,9 +4,12 @@ import 'package:flutter_challenge/app/helpers/colors_helper.dart';
 import 'package:flutter_challenge/app/helpers/formatter_helper.dart';
 import 'package:flutter_challenge/app/helpers/text_input_mask.dart';
 import 'package:flutter_challenge/app/helpers/validator_helper.dart';
+import 'package:flutter_challenge/app/page/session/sign_up/sign_up_view_model.dart';
 import 'package:flutter_challenge/app/shared/components/button/custom_button.dart';
+import 'package:flutter_challenge/app/shared/components/progress/dialog/progress_dialog.dart';
 import 'package:flutter_challenge/app/shared/components/textForm/password_text_form.dart';
 import 'package:flutter_challenge/app/shared/components/ui/sign_up/update_allowed_widget.dart';
+import 'package:stacked/stacked.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -14,51 +17,56 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final _formKey = GlobalKey<FormState>();
-  var _autoValidate = AutovalidateMode.disabled;
-  String? _fullNameValue;
-  String? _emailValue;
-  String? _cpfValue;
-  String? _phoneValue;
-  String? _passwordValue;
-  String? _cofirmPasswordValue;
-  bool _emailUpdatesAllowed = false;
+  late SignUpViewModel _viewModel;
 
   @override
   Widget build(BuildContext context) {
+    return ViewModelBuilder<SignUpViewModel>.reactive(
+      viewModelBuilder: () => SignUpViewModel(context),
+      builder: (context, model, child) {
+        _viewModel = model;
+        return _buildRoot();
+      },
+    );
+  }
+
+  Scaffold _buildRoot() {
     final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Form(
-        key: _formKey,
-        autovalidateMode: _autoValidate,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: deviceHeight * 0.1),
-                _buildLogoAndTitle(),
-                SizedBox(height: 16),
-                _buildTextFormFieldFullName(),
-                SizedBox(height: 16),
-                _buildTextFormFieldEmail(),
-                SizedBox(height: 16),
-                _buildTextFormFieldCPF(),
-                SizedBox(height: 16),
-                _buildTextFormFieldPhone(),
-                SizedBox(height: 16),
-                _buildTextFormFieldPassword(),
-                SizedBox(height: 16),
-                _buildTextFormConfirmPassword(),
-                SizedBox(height: 16),
-                _buildUpdateAllowed(),
-                SizedBox(height: deviceHeight * 0.1),
-                _buildButtonRegister(),
-                SizedBox(height: 16),
-                _buildTextButtonLoginUser(),
-              ],
+        key: _viewModel.formKey,
+        autovalidateMode: _viewModel.autoValidate,
+        child: ProgressDialog(
+          isLoading: _viewModel.isBusy,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: deviceHeight * 0.1),
+                  _buildLogoAndTitle(),
+                  SizedBox(height: 16),
+                  _buildTextFormFieldFullName(),
+                  SizedBox(height: 16),
+                  _buildTextFormFieldEmail(),
+                  SizedBox(height: 16),
+                  _buildTextFormFieldCPF(),
+                  SizedBox(height: 16),
+                  _buildTextFormFieldPhone(),
+                  SizedBox(height: 16),
+                  _buildTextFormFieldPassword(),
+                  SizedBox(height: 16),
+                  _buildTextFormConfirmPassword(),
+                  SizedBox(height: 16),
+                  _buildUpdateAllowed(),
+                  SizedBox(height: deviceHeight * 0.1),
+                  _buildButtonRegister(),
+                  SizedBox(height: 16),
+                  _buildTextButtonLoginUser(),
+                ],
+              ),
             ),
           ),
         ),
@@ -86,8 +94,9 @@ class _SignUpPageState extends State<SignUpPage> {
     return TextFormField(
       decoration: InputDecoration(labelText: "Nome Completo"),
       keyboardType: TextInputType.name,
+      textCapitalization: TextCapitalization.words,
       textInputAction: TextInputAction.next,
-      onSaved: (newValue) => _fullNameValue = newValue!.trim(),
+      onSaved: (newValue) => _viewModel.userForm.name = newValue,
       validator: (value) => Validator.fieldIsEmpty(value!),
     );
   }
@@ -99,7 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       validator: Validator.emailRule,
-      onSaved: (newValue) => _emailValue = newValue!.trim(),
+      onSaved: (newValue) => _viewModel.userForm.email = newValue,
     );
   }
 
@@ -110,7 +119,7 @@ class _SignUpPageState extends State<SignUpPage> {
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       validator: (value) => Validator.cpfRule(value!),
-      onSaved: (newValue) => _cpfValue = newValue!.trim(),
+      onSaved: (newValue) => _viewModel.userForm.cpf = newValue,
     );
   }
 
@@ -121,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       validator: (value) => Validator.phoneRule(value!),
-      onSaved: (newValue) => _phoneValue = newValue!.trim(),
+      onSaved: (newValue) => _viewModel.userForm.phoneNumber = newValue,
     );
   }
 
@@ -130,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
       text: "Senha",
       textInputAction: TextInputAction.next,
       validator: (text) => Validator.passwordRule(text),
-      onChanged: (newValue) => _passwordValue = newValue,
+      onChanged: (newValue) => _viewModel.userForm.password = newValue,
     );
   }
 
@@ -138,16 +147,16 @@ class _SignUpPageState extends State<SignUpPage> {
     return PasswordTextFormField(
       text: "Confirmação de Senha",
       textInputAction: TextInputAction.done,
-      validator: (text) => Validator.confirmPasswordRule(_passwordValue, text),
-      onSaved: (text) => _cofirmPasswordValue = text,
+      validator: (text) =>
+          Validator.confirmPasswordRule(_viewModel.userForm.password, text),
     );
   }
 
   Widget _buildUpdateAllowed() {
     return UpdateAllowedWidget(
       text: "Receber atualizações por e-mail",
-      value: _emailUpdatesAllowed,
-      onChanged: _onCheckBoxChanged,
+      value: _viewModel.userForm.emailUpdatesAllowed,
+      onChanged: _viewModel.onCheckBoxChanged,
     );
   }
 
@@ -155,7 +164,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return CustomButton(
       text: "Registrar",
       onPressed: () {
-        _validateForm();
+        _viewModel.validateForm();
       },
     );
   }
@@ -181,19 +190,5 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
-  }
-
-  void _onCheckBoxChanged(bool? newValue) {
-    setState(() {
-      _emailUpdatesAllowed = newValue ?? false;
-    });
-  }
-
-  void _validateForm() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-    } else {
-      setState(() => _autoValidate = AutovalidateMode.always);
-    }
   }
 }

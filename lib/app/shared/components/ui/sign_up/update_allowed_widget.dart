@@ -26,7 +26,8 @@ class UpdateAllowedWidget extends StatelessWidget {
       onTap: () => onChanged(!value),
       child: Row(
         children: <Widget>[
-          Expanded(child: Text(text, style: Theme.of(context).textTheme.bodyText1)),
+          Expanded(
+              child: Text(text, style: Theme.of(context).textTheme.bodyText1)),
           CupertinoSwitch(
             value: value,
             onChanged: onChanged,
@@ -41,11 +42,14 @@ class UpdateAllowedWidget extends StatelessWidget {
       onTap: () => onChanged(!value),
       child: Row(
         children: <Widget>[
-          Checkbox(
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            value: value,
-            onChanged: onChanged,
-            activeColor: C.accent,
+          Theme(
+            data: ThemeData(unselectedWidgetColor: Colors.white),
+            child: Checkbox(
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              value: value,
+              onChanged: onChanged,
+              activeColor: C.accent,
+            ),
           ),
           Text(text),
         ],

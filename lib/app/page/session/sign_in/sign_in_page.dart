@@ -25,12 +25,12 @@ class _SignInPageState extends State<SignInPage> {
       viewModelBuilder: () => SignInViewModel(context),
       builder: (context, model, child) {
         _viewModel = model;
-        return _buildRoot(context);
+        return _buildRoot();
       },
     );
   }
 
-  AnnotatedRegion<SystemUiOverlayStyle> _buildRoot(BuildContext context) {
+  AnnotatedRegion<SystemUiOverlayStyle> _buildRoot() {
     final deviceHeight = MediaQuery.of(context).size.height;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(

@@ -6,17 +6,19 @@ const String cellPhonePattern = '(99) 99999-9999';
 MagicMask cpfMask = MagicMask.buildMask(cpfPattern);
 MagicMask phoneMask = MagicMask.buildMask(cellPhonePattern);
 
-extension StringExtensions on String {
-  String get extractNumbers {
-    return replaceAll(RegExp(r'[^0-9]'), '');
+extension StringExtensions on String? {
+  String? get extractNumbers {
+    return this?.replaceAll(RegExp(r'[^0-9]'), '');
   }
 
   bool get isValidCpf => _isValidCpf(this);
 
-  static bool _isValidCpf(String cpf) {
+  static bool _isValidCpf(String? cpf) {
+    if (cpf == null) return false;
+
     final numbers = cpf.extractNumbers;
 
-    if (numbers.length != 11) return false;
+    if (numbers!.length != 11) return false;
 
     final everyCharacterIsTheSame = RegExp(r'^(\d)\1*$').hasMatch(numbers);
     if (everyCharacterIsTheSame) return false;
