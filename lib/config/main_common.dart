@@ -15,7 +15,7 @@ void mainCommon(String environment) async {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  final UserModel? user = await UserSharedPreferences.getUser();
+  final UserModel? user = await SharedPreferencesHelper.getUser();
   K.init(value: environment);
   assert(buildEnv != null);
 

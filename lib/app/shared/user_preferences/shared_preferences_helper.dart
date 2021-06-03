@@ -9,9 +9,8 @@ import 'package:flutter_challenge/config/main_common.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class UserSharedPreferences {
+class SharedPreferencesHelper {
   static const _token = 'shared-preference-token';
-  static const _isLogged = 'shared-preference-is-logged';
   static const _user = 'shared-preference-user';
 
   static Future saveUserFromSessionSharedPrefence(
@@ -21,7 +20,6 @@ class UserSharedPreferences {
     final UserChanger userChanger = Provider.of<UserChanger>(context, listen: false);
     userChanger.setUserChanger(session?.user);
     await _save(_user, session?.user);
-    await _save(_isLogged, true);
     if (session?.token != null) await _save(_token, session?.token);
   }
 
@@ -35,9 +33,6 @@ class UserSharedPreferences {
     }
   }
 
-  static Future<bool> isLogged() async =>
-      await _fetch<bool?>(_isLogged) ?? false;
-
   static Future logout(BuildContext context) async {
     _removeAllValues();
 
@@ -50,7 +45,6 @@ class UserSharedPreferences {
   static Future _removeAllValues() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(_token);
-    await prefs.remove(_isLogged);
     await prefs.remove(_user);
   }
 

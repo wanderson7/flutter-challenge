@@ -29,7 +29,7 @@ class SignInViewModel extends BaseViewModel {
   }
 
   void _showMainPage(SessionModel sessionModel) async {
-    await UserSharedPreferences.saveUserFromSessionSharedPrefence(
+    await SharedPreferencesHelper.saveUserFromSessionSharedPrefence(
       context,
       sessionModel,
     );

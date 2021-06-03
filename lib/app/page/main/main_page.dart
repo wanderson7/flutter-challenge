@@ -50,7 +50,7 @@ class _MainPageState extends State<MainPage> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextButton(
         style: TextButton.styleFrom(primary: C.accent),
-        onPressed: () => UserSharedPreferences.logout(context),
+        onPressed: () => SharedPreferencesHelper.logout(context),
         child: Text(S.current.logout),
       ),
     );
